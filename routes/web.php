@@ -126,3 +126,8 @@ Route::post('updatevotesagency-{id}', [AgencyEntrance::class, 'updatevotos'])
 Route::get('¡PDF-GENERADO-AGENCIA!', [AgencyEntrance::class, 'imprimir'])
 ->middleware('auth.agency')
 ->name('imprimir2');
+
+// Votos
+Route::get('/votos', function () {
+    return view('agencias/votos');
+});

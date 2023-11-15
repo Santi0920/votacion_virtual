@@ -168,19 +168,24 @@
     <div>
 
         <div class=" mt-3 mb-5">
-            <div class="d-flex justify-content-center">
-  
+            <div class="text-center">
+                
                 @foreach ($Tarjeton as $candidato)
+                    <img src="/fotos/{{$candidato->Foto}}.jpg" alt="Foto de {{$candidato->Nombre.' '.$candidato->Apellidos}}"><br>
                     <p>Nombre: {{ $candidato->Nombre }}</p>
                     <p>Apellidos: {{ $candidato->Apellidos }}</p>
                     <p>Número de Tarjetón: {{ $candidato->NoTarjeton }}</p>
                     <p>Agencia: {{ $candidato->AgenciaD }}</p><br>
+                    
                 @endforeach
 
                 
-                <button type="submit" class="btn fw-semibold" style="background-color:#005E56; color:white; font-size:40px;">BUSCAR</button>
+                
             </div>
+            
         </div>
+
+        <div class="text-center mb-5"><button type="submit" class="btn fw-semibold" style="background-color:#005E56; color:white; font-size:40px;">BUSCAR</button></div>
 
 
 

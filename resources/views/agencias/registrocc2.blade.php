@@ -78,11 +78,19 @@
   <!-- Foto Coopserp--> 
   <img src="img/CoopserpPH.png" alt="Coopserp.icono" width="150px" height="60px" id="data" class="navbar-brand mb-2 mt-2" style="filter: drop-shadow(0 2px 0.8px white);">
     
-  <ul class="navbar-nav me-auto mb-lg-0 header">        
+  <ul class="navbar-nav me-auto mb-lg-0 header">  
+    <!-- Consultar cedula--> 
+    <li class="nav-item" style="margin-left: 30px">
+      <a href="https://www.coopserp.com/consulta_cedula/" style="text-decoration: none" target="__blank">
+        <span class="nav-link active text-white fw-bold" type="button" style="font-size: 25px">
+          CONSULTA
+        </span>
+      </a>
+    </li>      
     <!-- DataCreditos-->       
     <div class="dropdown nav-item" style="margin-left: 30px">
       <li class="nav-link active text-white fw-bold" type="button" style="font-size: 25px">
-        INGRESO
+        REGISTRO
        </li>
 
     </div>
@@ -110,7 +118,7 @@
 
 <div class="container-fluid row p-4">
 <form action="{{route('cc.createagency')}}" class="col 3 m-3" method="POST" enctype= "multipart/form-data" onsubmit="return validateForm()">
-  <h2 class="p-2 text-secondary text-center"><b>ENTRADA VOTACIONES</b></h2>
+  <h2 class="p-2 text-secondary text-center"><b>REGISTRO GENERAL DE VOTANTES</b></h2>
   
  @csrf
   

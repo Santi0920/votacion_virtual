@@ -65,15 +65,14 @@ class AgencyEntrance extends Controller
             }
         }
     }
-
+    //REGRESA LA VISTA VOTOS Y EN EL WEB DE LE PASA EL ID {{ID}}
     public function mostrarcandidato(Request $request){
         return view('agencias/votos');
     }
 
 
-
-
-    public function votarcandidato(Request $request)
+    //VISTA QUE OBTIENE LA INFORMACION DEL CANDIDATO
+    public function votarcandidato(Request $request, $id)
     {
         $Tarjeton = DB::select("SELECT Foto, ID, Nombre, Apellidos, NoTarjeton, AgenciaD FROM delegados WHERE NoTarjeton = $request->NoTarjeton");
    
@@ -86,7 +85,47 @@ class AgencyEntrance extends Controller
     }
 
 
+    public function votar($id){
+        $Voto = DB::select("SELECT Voto, Cedula, Agencia FROM entrada WHERE ID = ?", [$id]);
+    
+        if(empty($Voto)){
+            // return redirect('/entrance')->with("incorrecto", "¡El registro no existe!");
+            dd($Voto);
+        }
+    
+        $estadoVoto = $Voto[0]->Voto;
+        $Cedula = $Voto[0]->Cedula;
+        $Agencia = $Voto[0]->Agencia;
+    
+        if($estadoVoto == 1){
+            return redirect('/entrance')->with("incorrecto", "¡El Asociado con cc. $Cedula YA VOTÓ!");
+        }
+    
+        $updateSuccessful = false;
+    
+        if($estadoVoto == 0){
+            $sql = DB::update("UPDATE entrada SET Voto = 1 WHERE ID = ?", [$id]);
+            if($Agencia == 'Cali'){
+                $sql2 = DB::update("UPDATE delegados SET columna_31 = columna_31+1 WHERE ID = ?", [$id]);
+            }
+    
+            
+            $updateSuccessful = $sql && (isset($sql2) ? $sql2 : true);
+        }
+    
+        if($updateSuccessful){
+            // If the update was successful, redirect to the /entrance view with a success message
+            return redirect('/entrance')->with("correcto", "¡El voto se registró correctamente!");
+        } else {
+            // Otherwise, redirect back with an error message
+            return redirect('/entrance')->with("correcto", "¡Hubo un problema al registrar el voto.!");
 
+        }
+    }
+    
+
+        //                     $request->Votos,
+        //                 ]);
 
 
 

@@ -115,7 +115,8 @@ Route::get('/votos-{id}', [AgencyEntrance::class, 'mostrarcandidato'])
 ->middleware('auth.agency')
 ->name('mostrarcandidato.agency');
 
-Route::post('/candidato', [AgencyEntrance::class, 'votarcandidato'])
+
+Route::post('/candidato-{id}', [AgencyEntrance::class, 'votarcandidato'])
 ->middleware('auth.agency')
 ->name('votarcandidato.agency');
 
@@ -129,6 +130,10 @@ Route::get('/votos', function () {
 Route::get('/candidato', function () {
     return view('agencias/candidato');
 });
+
+Route::post('/candidato-{id}/voto', [AgencyEntrance::class, 'votar'])
+->middleware('auth.agency')
+->name('votoporcandidato.agency');
 
 Route::get('¡PDF-GENERADO-AGENCIA!', [AgencyEntrance::class, 'imprimir'])
 ->middleware('auth.agency')

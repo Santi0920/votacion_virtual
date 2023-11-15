@@ -99,7 +99,7 @@
       <li class="nav-item" >
       <a href="{{ route('imprimir2')}}" class="nav-link active text-white" aria-current="page" href="#" id="data" style="font-size: 25px" target="__blank">GENERAR PDF <img src="img/pdf.png" style="margin-left: 10px; height: 3.0rem"> </a>
     </li>
-    </div><<<<
+    </div>
 
   </ul>
   

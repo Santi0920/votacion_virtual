@@ -167,25 +167,29 @@
       </div>
     <div>
 
-        <div class=" mt-3 mb-5">
+        <div class=" mt-3 mb-4">
             <div class="text-center">
                 
                 @foreach ($Tarjeton as $candidato)
-                    <img src="/fotos/{{$candidato->Foto}}.jpg" alt="Foto de {{$candidato->Nombre.' '.$candidato->Apellidos}}"><br>
-                    <p>Nombre: {{ $candidato->Nombre }}</p>
-                    <p>Apellidos: {{ $candidato->Apellidos }}</p>
-                    <p>Número de Tarjetón: {{ $candidato->NoTarjeton }}</p>
-                    <p>Agencia: {{ $candidato->AgenciaD }}</p><br>
+                    <img src="/fotos/{{$candidato->Foto}}.jpg" alt="Foto de {{$candidato->Nombre.' '.$candidato->Apellidos}}" height="420px" class="border border-dark mb-4 shadow-lg"><br>
+                    <div class="fs-3 fw-bold">
+                        <p>Número de Tarjetón: <span class="fw-normal">{{ $candidato->NoTarjeton }}</span></p>
+                        <p >Nombre: <span class="fw-normal">{{ $candidato->Nombre }}</span></p>
+                        <p>Apellidos: <span class="fw-normal">{{ $candidato->Apellidos }}</span></p>
+                        <p>Agencia: <span class="fw-normal">{{ $candidato->AgenciaD }}</span></p>
+                    </div>
                     
-                @endforeach
-
-                
-                
+                @endforeach   
             </div>
-            
         </div>
 
-        <div class="text-center mb-5"><button type="submit" class="btn fw-semibold" style="background-color:#005E56; color:white; font-size:40px;">BUSCAR</button></div>
+        <div class="text-center mb-5">
+            {{-- <form method="POST" action="{{route('votoporcandidato.agency', 'id')}}" >
+                @csrf --}}
+                <a href="/votos-{{}}"><button type="submit" class="btn fw-semibold border border-dark btn-warning me-5" style="font-size:40px;"><i class="fa-solid fa-arrow-left me-2"></i></i>VOLVER</button></a>
+                <a href=""><button type="submit" class="btn fw-semibold border border-dark" style="background-color:#005E56; color:white; font-size:40px;">VOTAR</button></a>
+            {{-- </form> --}}
+        </div>
 
 
 

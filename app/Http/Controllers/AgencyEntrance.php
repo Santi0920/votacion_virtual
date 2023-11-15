@@ -66,47 +66,26 @@ class AgencyEntrance extends Controller
         }
     }
 
-    public function mostrarcandidato(Request $request, $id){
-        $Tarjeton = DB::select("SELECT * FROM delegados WHERE NoTarjeton = $id");
-
-        
+    public function mostrarcandidato(Request $request){
+        return view('agencias/votos');
     }
+
 
 
 
     public function votarcandidato(Request $request, $id)
     {
-        $existingPerson = DB::select('SELECT * FROM entrada WHERE Cedula = ?', [$request->Cedula]);
-
-        if ($existingPerson == true) {
-            return back()->with("incorrecto", "Persona con cc. $request->Cedula ya existe! Error al Registrar!");
-        }
-        
-         else {
-            date_default_timezone_set('America/Bogota');
-            $fechaHoraActual = date('Y-m-d H:i');
-            $sql = DB::insert('INSERT INTO entrada (Agencia, Cedula, Priapellido, Segapellido, Nombre, Genero, Anionaci, Mesnaci, Dianaci, TipoSangre, Cuenta, Fecha) VALUES (?, ?, ?, UPPER(?), ?, ?, ?, ?, ?, ?, ?, ?)', [
-                $request->Agencia,
-                $request->Cedula,
-                $request->Priapellido,
-                $request->Segapellido,
-                $request->Nombre,
-                $request->Genero,
-                $request->Anionaci,
-                $request->Mesnaci,
-                $request->Dianaci,
-                $request->TipoSangre,
-                $request->Cuenta,
-                $fechaHoraActual
-            ]);
-
-            if ($sql) {
-                return back()->with("correcto", "Persona Registrada correctamente!");
-            } else {
-                return back()->with("incorrecto", "Error al insertar el registro!");
-            }
+        $Tarjeton = DB::select("SELECT Nombre, Apellidos, NoTarjeton, AgenciaD FROM delegados WHERE NoTarjeton = $request->NoTarjeton");
+   
+        if(empty($Tarjeton)){
+            return back()->with("incorrecto", "Tarjetón #$request->NoTarjeton, ¡NO EXISTE!");
+        }else{
+      
+            return view('agencias/candidato', ['Tarjeton' => $Tarjeton]);
         }
     }
+
+
 
 
 

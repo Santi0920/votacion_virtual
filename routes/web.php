@@ -111,15 +111,21 @@ Route::get('/datatableagency', [AgencyEntrance::class, 'data'])
 ->middleware('auth.agency')
 ->name('datatable.agency');
 
-Route::get('/candidato-{id}', [AgencyEntrance::class, 'mostrarcandidato'])
+Route::post('/votos-{id}', [AgencyEntrance::class, 'mostrarcandidato'])
 ->middleware('auth.agency')
 ->name('mostrarcandidato.agency');
-
-Route::get('¡PDF-GENERADO-AGENCIA!', [AgencyEntrance::class, 'imprimir'])
-->middleware('auth.agency')
-->name('imprimir2');
 
 // Votos
 Route::get('/votos', function () {
     return view('agencias/votos');
 });
+
+
+Route::get('/candidato', function () {
+    return view('agencias/candidato');
+});
+
+Route::get('¡PDF-GENERADO-AGENCIA!', [AgencyEntrance::class, 'imprimir'])
+->middleware('auth.agency')
+->name('imprimir2');
+

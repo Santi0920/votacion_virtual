@@ -89,8 +89,8 @@
     </li>      
     <!-- DataCreditos-->       
     <div class="dropdown nav-item" style="margin-left: 30px">
-      <li class="nav-link active text-white fw-bold" type="button" style="font-size: 25px">
-        REGISTRO
+      <li class="nav-link active text-white fw-bold" type="button">
+        <a href="/entrance" class="text-light" style="text-decoration: none; font-size: 25px">REGISTRO</a> 
        </li>
 
     </div>
@@ -99,7 +99,7 @@
       <li class="nav-item" >
       <a href="{{ route('imprimir2')}}" class="nav-link active text-white" aria-current="page" href="#" id="data" style="font-size: 25px" target="__blank">GENERAR PDF <img src="img/pdf.png" style="margin-left: 10px; height: 3.0rem"> </a>
     </li>
-    </div>
+    </div><<<<
 
   </ul>
   
@@ -385,9 +385,9 @@
         
         var html = '';
 
-      var deleteButton = '<div class="text-center"><a onclick="return confirmar()" href="{{ route('delegate.delete', ':id') }}" type="submit" class="btn btn-small btn-warning" name="eliminar" value="ok"><i class="fa-solid fa-ticket"></i></a></div>'.replace(':id', row.ID);
+      var mostrarCandidato = '<div class="text-center"><a onclick="return confirmar()" href="{{ route('mostrarcandidato.agency', ':id') }}" type="submit" class="btn btn-small btn-warning" name="eliminar" value="ok"><i class="fa-solid fa-ticket"></i></a></div>'.replace(':id', row.ID);
 
-  return deleteButton;
+  return mostrarCandidato;
 
 }
   }

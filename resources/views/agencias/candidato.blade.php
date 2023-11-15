@@ -86,7 +86,6 @@
           </span>
         </a>
       </li>
-
       <div class="dropdown nav-item" style="margin-left: 30px">
         <li class="nav-link active text-white fw-bold" type="button">
           <a href="/entrance" class="text-light" style="text-decoration: none; font-size: 25px">REGISTRO</a> 
@@ -170,39 +169,14 @@
 
         <div class=" mt-3 mb-5">
             <div class="d-flex justify-content-center">
-                <form id="calculadoraForm" class="text-center" method="POST" action="{{route('mostrarcandidato.agency', 'id')}}"> 
-                    @csrf
-                    <label for="numero" class="form-label me-2 fw-semibold" style="font-size:40px">Ingrese el numero de tarjetón:</label>
+  
+                @foreach ($Tarjeton as $candidato)
+                    <p>Nombre: {{ $candidato->Nombre }}</p>
+                    <p>Apellidos: {{ $candidato->Apellidos }}</p>
+                    <p>Número de Tarjetón: {{ $candidato->NoTarjeton }}</p>
+                    <p>Agencia: {{ $candidato->AgenciaD }}</p>
+                @endforeach
 
-                    <div class="mb-3 d-flex align-items-center justify-content-center">
-                        <input type="text" class="form-control me-2 text-center w-50" id="numero" name="NoTarjeton" style="font-size:25px" required readonly>
-                        <button type="button" class="btn btn-success" style="background-color:#005E56; color:white; font-size:25px" onclick="borrar()">←</button>
-                    </div>
-                    <div class="d-grid gap-3">
-                        <div>
-                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(7)">7</button>
-                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(8)">8</button>
-                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(9)">9</button>
-                        </div>
-                        
-                        <div>
-                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(4)">4</button>
-                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(5)">5</button>
-                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(6)">6</button>
-                        </div>
-                        <div>
-                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(1)">1</button>
-                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(2)">2</button>
-                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(3)">3</button>
-                        </div>
-                        <div>
-                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(0)">0</button>
-                        </div>
-                        <div>
-                        <button type="submit" class="btn fw-semibold" style="background-color:#005E56; color:white; font-size:40px;">BUSCAR</button>
-                    </div>
-                    </div>
-                </form>
                 
 
             </div>

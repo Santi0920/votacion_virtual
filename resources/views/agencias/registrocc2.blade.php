@@ -267,6 +267,7 @@
               <th class="" scope="col"></th>
               <th class="" scope="col">SANGRE</th>
               <th class="" scope="col">FECHA/HORA ENTRADA</th>
+              <th class="" scope="col">VOTAR</th>
             </tr> 
           </thead> 
           <tbody class="table-group-divider">
@@ -314,7 +315,22 @@
       title: 'FECHA NACIMIENTO' 
     },
     {data: 'TipoSangre'},
-    {data: 'Fecha'}
+    {data: 'Fecha'},
+    {    data: null,
+      render: function(data, type, row) {
+        var id = row.ID;
+        var url = "{{route ('update.delegatevotes', ':id') }}"; 
+        var today = new Date().toISOString().split('T')[0];
+        url = url.replace(':id', id);
+        
+        var html = '';
+
+      var deleteButton = '<div class="text-center"><a onclick="return confirmar()" href="{{ route('delegate.delete', ':id') }}" type="submit" class="btn btn-small btn-warning" name="eliminar" value="ok"><i class="fa-solid fa-ticket"></i></a></div>'.replace(':id', row.ID);
+
+  return deleteButton;
+
+}
+  }
   ],
 
   "lengthMenu": [[5], [5]],

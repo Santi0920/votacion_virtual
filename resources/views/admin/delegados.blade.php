@@ -553,6 +553,7 @@
               <th class="" scope="col">APELLIDOS</th>
               <th class="" scope="col">FECHA</th>
               <th class="" scope="col">HORA</th>
+              <th class="" scope="col">TOTAL VOTOS</th>
               <th class="" style="width: 25px"></th>
             </tr> 
           </thead> 
@@ -590,6 +591,7 @@
     {data: 'Apellidos'},
     {data: 'Fecharegistro'},
     {data: 'Horaregistro'},
+    {data: 'Total'},
  
     {    data: null,
       render: function(data, type, row) {

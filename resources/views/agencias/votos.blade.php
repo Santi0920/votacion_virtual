@@ -170,7 +170,7 @@
 
         <div class=" mt-3 mb-5">
             <div class="d-flex justify-content-center">
-                <form id="calculadoraForm" class="text-center" method="POST" action="{{route('mostrarcandidato.agency', 'id')}}"> 
+                <form id="calculadoraForm" class="text-center" method="POST" action="{{ route('votarcandidato.agency') }}"> 
                     @csrf
                     <label for="numero" class="form-label me-2 fw-semibold" style="font-size:40px">Ingrese el numero de tarjetón:</label>
 

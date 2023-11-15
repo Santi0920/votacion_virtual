@@ -73,9 +73,9 @@ class AgencyEntrance extends Controller
 
 
 
-    public function votarcandidato(Request $request, $id)
+    public function votarcandidato(Request $request)
     {
-        $Tarjeton = DB::select("SELECT Nombre, Apellidos, NoTarjeton, AgenciaD FROM delegados WHERE NoTarjeton = $request->NoTarjeton");
+        $Tarjeton = DB::select("SELECT ID, Nombre, Apellidos, NoTarjeton, AgenciaD FROM delegados WHERE NoTarjeton = $request->NoTarjeton");
    
         if(empty($Tarjeton)){
             return back()->with("incorrecto", "Tarjetón #$request->NoTarjeton, ¡NO EXISTE!");

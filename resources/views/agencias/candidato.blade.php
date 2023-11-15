@@ -98,7 +98,7 @@
         <a href="{{ route('imprimir2')}}" class="nav-link active text-white" aria-current="page" href="#" id="data" style="font-size: 25px" target="__blank">GENERAR PDF <img src="img/pdf.png" style="margin-left: 10px; height: 3.0rem"> </a>
       </li>
       </div>
-  
+      
     </ul>
     
     <span class="mx-4 text-white" style="font-size: 25px;"><img style="height: 2.5rem" class="mx-1" src="img/perfil.png">Bienvenid@ <strong>{{ auth()->user()->name }}</strong></span>
@@ -174,11 +174,11 @@
                     <p>Nombre: {{ $candidato->Nombre }}</p>
                     <p>Apellidos: {{ $candidato->Apellidos }}</p>
                     <p>Número de Tarjetón: {{ $candidato->NoTarjeton }}</p>
-                    <p>Agencia: {{ $candidato->AgenciaD }}</p>
+                    <p>Agencia: {{ $candidato->AgenciaD }}</p><br>
                 @endforeach
 
                 
-
+                <button type="submit" class="btn fw-semibold" style="background-color:#005E56; color:white; font-size:40px;">BUSCAR</button>
             </div>
         </div>
 

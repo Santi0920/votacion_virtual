@@ -111,9 +111,14 @@ Route::get('/datatableagency', [AgencyEntrance::class, 'data'])
 ->middleware('auth.agency')
 ->name('datatable.agency');
 
-Route::post('/votos-{id}', [AgencyEntrance::class, 'mostrarcandidato'])
+Route::get('/votos-{id}', [AgencyEntrance::class, 'mostrarcandidato'])
 ->middleware('auth.agency')
 ->name('mostrarcandidato.agency');
+
+Route::post('/candidato', [AgencyEntrance::class, 'votarcandidato'])
+->middleware('auth.agency')
+->name('votarcandidato.agency');
+
 
 // Votos
 Route::get('/votos', function () {

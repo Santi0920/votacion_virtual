@@ -77,12 +77,20 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <!-- Foto Coopserp--> 
       <img src="img/CoopserpPH.png" alt="Coopserp.icono" width="150px" height="60px" id="data" class="navbar-brand mb-2 mt-2" style="filter: drop-shadow(0 2px 0.8px white);">
-    
-      <ul class="navbar-nav me-auto mb-lg-0 header">        
+        <!-- Consultar cedula--> 
+      <ul class="navbar-nav me-auto mb-lg-0 header">       
+        <li class="nav-item" style="margin-left: 30px"  >
+          <a href="https://www.coopserp.com/consulta_cedula/" style="text-decoration: none" target="__blank">
+            <span class="nav-link active text-white fw-bold" type="button" style="font-size: 25px">
+              CONSULTA
+            </span>
+          </a>
+        </li>
+
         <li class="nav-item" style="margin-left: 30px">
           <a href="/" style="text-decoration: none">
             <span class="nav-link active text-white fw-bold" type="button" style="font-size: 25px">
-              INGRESO
+              REGISTRO
             </span>
           </a>
         </li>

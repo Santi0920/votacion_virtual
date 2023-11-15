@@ -128,7 +128,7 @@
 
       </b></h2>
     </div>
-    <h2 class="p-2 mb-0 text-secondary text-start"><b><span class="text-warning" style="text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);">SOFTWARE VOTACIONES</span> - CANDIDATOS - <span class="text-end" id="fechaActual"></b></span></h2>
+    <h2 class="p-2 mb-0 text-secondary text-start"><b><span class="text-warning" style="text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);"></span>  <span class="text-end" id="fechaActual"></b></span></h2>
     <script>
      function obtenerFechaActual() {
         const fecha = new Date();
@@ -167,33 +167,58 @@
     
         </form>  
       </div>
-      <div style="overflow: auto;" class="p-3 table-responsive">
-        <table id="personas" class=" hover table table-striped shadow-lg mt-2 table-bordered table-hover col-md-4" style="font-size: 25px">
-          <thead class="" style="background-color: #005E56;">
-            <tr class="text-white">
-              <th class="" scope="col" style="width: 20px">#</th>
-              <th class="" scope="col" style="width: 100px">POSICION</th>
-              <th class="" scope="col" style="width: 100px">AGENCIA</th>
-              <th class="" scope="col" style="width: 20px">TARJETON</th>
-              <th class="" scope="col" >NOMBRE</th>
-              <th class="" scope="col">APELLIDOS</th>
-              <th class="" scope="col" style="width: 30px"></th>
-            </tr> 
-          </thead> 
-          <tbody class="table-group-divider">
-           
-            
-          </tbody>
+    <div>
+
+        <div class=" mt-4 mb-4">
+            <div class="d-flex justify-content-center">
+                <form id="calculadoraForm" class="text-center">
+                    @csrf
+                    <label for="numero" class="form-label me-2" style="font-size:40px">Ingrese el numero de tarjetón:</label>
+
+                    <div class="mb-3 d-flex align-items-center justify-content-center">
+                        <input type="text" class="form-control me-2" id="numero" required readonly oninput="limitarInput(this, 2)" onkeypress="return esNumero(event)">
+                        <button type="button" class="btn btn-success" style="background-color:#005E56; color:white; font-size:25px" onclick="borrar()">←</button>
+                    </div>
+
+                    <div class="d-grid gap-3">
+                        <div>
+                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(7)">7</button>
+
+                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(8)">8</button>
+                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(9)">9</button>
+                        </div>
+                        
+                        <div>
+                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(4)">4</button>
+                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(5)">5</button>
+                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(6)">6</button>
+                        </div>
+                        <div>
+                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(1)">1</button>
+                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(2)">2</button>
+                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(3)">3</button>
+                        </div>
+                        <div>
+                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(0)">0</button>
+                        </div>
+                        <div>
+                        <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px;">BUSCAR</button>
+                    </div>
+                    </div>
+                </form>
+                
+
+            </div>
+        </div>
 
 
-          
-        </table>
 
-        
-
+    </div>
 
           </div>
         </div>
+
+        
         <script src="ResourcesAll/dtables/jquery-3.5.1.js"></script>
         <script src="ResourcesAll/dtables/jquerydataTables.js"></script>
         <script src="ResourcesAll/dtables/dataTablesbootstrap5.js"></script>
@@ -202,120 +227,53 @@
         <script src="ResourcesAll/dtables/estilobotondt.min.js"></script>
         <script src="ResourcesAll/dtables/botonimprimir.min.js"></script>
         <script src="ResourcesAll/dtables/imprimir2.min.js"></script>
-        
         <script>
-
-
-
- var table = $('#personas').DataTable({
-  "ajax": "{{ route('datatable.agency2') }}",
-  "columns": [
-    {data: 'ID'},
-    {data: 'Posicion'},
-    {data: 'AgenciaD'},
-    {data: 'NoTarjeton'},
-    {data: 'Nombre'},
-    {data: 'Apellidos'},
-    {    
-        data: null,
-      render: function(data, type, row) {
-        var id = row.ID;
-        var url = "{{route ('update.delegatevotesagency', ':id') }}"; 
-        var today = new Date().toISOString().split('T')[0];
-        url = url.replace(':id', id);
+            let inputNumero = document.getElementById('numero');
+            let inputResultado = document.getElementById('resultado');
         
+            function agregarNumero(numero) {
+                inputNumero.value += numero;
+            }
         
-        var html = '';
 
-      var editButton = `<a title="VOTOS" href="" id="modalLink_${id}" type="submit" class="btn btn-small btn-warning edit-button edit" data-bs-toggle="modal" data-bs-target="#modalEditar_${id}" data-id="${id}" style="margin-right: "><i class="fa-solid fa-ticket"></i></a>
-      <div class="modal fade" id="modalEditar_${id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-          <div class="modal-content">
-            <button type="button" data-bs-dismiss="modal" class="btn-close p-3" aria-label="Close"></button>
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                <h1 class="modal-title text-center" id="modificar">AGREGAR VOTOS</h1>
-            </div>
-            <hr>
-            <div class="modal-body">
-              <form action="`+url+`" class="text-center" method="POST" enctype="multipart/form-data" id="formulario" onsubmit="return validateForm2()">
-              @csrf
-              <!-- Resto del contenido del modal -->
-              <div class="mb-3">
-                <label for="" id="" class="form-label fw-bold fs-4" value="" style="margin-left: -280px">VOTOS TOTALES</label>
-                <input type="number" class="form-control" name="Votos" id="Votos" value=""  placeholder="a ${row.Nombre} ${row.Apellidos}" required>
-              </div>
+        
+            function limpiar() {
+                inputNumero.value = '';
+                inputResultado.value = '';
+            }
+        
+            function borrar() {
+                inputNumero.value = inputNumero.value.slice(0, -1);
+            }
+        
 
-
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                  <button type="submit" name="editar" id="btnGuardar" class="btn btn-primary" style="background-color: #005E56;" onclick="return confirmar()">Guardar</button>
-
-
-                </div>
-                          </form>
-                        </div>
-                      </div>
-                    </div>
-                  </div>`;
-
-  return editButton;
-
-}
-  }
-  ],
-
-  "lengthMenu": [[5], [5]],
-  "language": {
-    "lengthMenu": "Mostrar _MENU_ registros por página",
-    "zeroRecords": "No existe!",
-    "info": "Mostrando la página _PAGE_ de _PAGES_",
-    "infoEmpty": "No hay registros disponibles",
-    "infoFiltered": "(Filtrado de _MAX_ registros totales)",
-    "search": "Buscar:",
-    "paginate": {
-      "next": "Siguiente",
-      "previous": "Anterior"
-    }
-  }
-});
-//   responsive: "true",
-//         dom: 'Bfrtilp',       
-//         buttons:[ 
-// 			{
-// 				extend:    'excelHtml5',
-// 				text:      '<i class="fas fa-file-excel"></i> ',
-// 				titleAttr: 'Exportar a Excel',
-// 				className: 'btn btn-success btn-lg'
-// 			},
-// 			{
-// 				extend:    'print',
-// 				text:      '<i class="fa fa-print"></i> ',
-// 				titleAttr: 'Imprimir',
-// 				className: 'btn btn-info btn-lg'
-// 			}
-//       ]	
-
-
-function showUnauthorizedMessage() {
-  Swal.fire({
-    icon: 'error',
-    title: '¡Permiso no autorizado!',
-    text: 'No tienes permiso para realizar esta acción.',
-    confirmButtonColor: '#005E56'
-  });
-  
-  return false;
-}
-
-
-
-
-function confirmar() {
-    var respuesta = confirm("POR FAVOR INGRESAR LOS VOTOS TOTALES DEL CANDIDATO. ADVERTENCIA!!! NO SE PODRÁ REALIZAR CAMBIOS DESPUÉS DE REGISTRARLOS.");
-    return respuesta;
-}
-
+        
+            function guardarResultado() {
+                // Puedes agregar lógica para guardar el resultado, por ejemplo, enviar a un servidor
+                // Aquí puedes usar AJAX o axios para hacer una solicitud al servidor
+                // En este ejemplo, simplemente mostraremos una alerta
+                alert('Resultado guardado: ' + inputResultado.value);
+            }
+        </script>
+    <script>
+        function limitarInput(elemento, maxLongitud) {
+            // Eliminar caracteres no numéricos
+            elemento.value = elemento.value.replace(/[^\d]/g, '');
     
+            // Limitar la longitud
+            if (elemento.value.length > maxLongitud) {
+                elemento.value = elemento.value.slice(0, maxLongitud);
+            }
+        }
+    
+        function esNumero(event) {
+            // Permite solo números
+            return /\d/.test(String.fromCharCode(event.keyCode));
+        }
+    </script>
+    
+
+    <script>
           function csesion(){
             var respuesta=confirm("¿Estas seguro que deseas cerrar sesión?")
             return respuesta

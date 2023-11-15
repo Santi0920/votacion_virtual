@@ -182,29 +182,63 @@
 
                     <div class="d-grid gap-3">
                         <div>
-                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(7)">7</button>
-
-                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(8)">8</button>
-                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(9)">9</button>
+                            <button type="button" class="btn boton-numero" onclick="agregarNumero(7)">7</button>
+                            <button type="button" class="btn boton-numero" onclick="agregarNumero(8)">8</button>
+                            <button type="button" class="btn boton-numero" onclick="agregarNumero(9)">9</button>
                         </div>
                         
                         <div>
-                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(4)">4</button>
-                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(5)">5</button>
-                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(6)">6</button>
+                            <button type="button" class="btn boton-numero" onclick="agregarNumero(4)">4</button>
+                            <button type="button" class="btn boton-numero" onclick="agregarNumero(5)">5</button>
+                            <button type="button" class="btn boton-numero" onclick="agregarNumero(6)">6</button>
                         </div>
+                    
                         <div>
-                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(1)">1</button>
-                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(2)">2</button>
-                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(3)">3</button>
+                            <button type="button" class="btn boton-numero" onclick="agregarNumero(1)">1</button>
+                            <button type="button" class="btn boton-numero" onclick="agregarNumero(2)">2</button>
+                            <button type="button" class="btn boton-numero" onclick="agregarNumero(3)">3</button>
                         </div>
+                    
                         <div>
-                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(0)">0</button>
+                            <button type="button" class="btn boton-numero" onclick="agregarNumero(0)">0</button>
                         </div>
+                    
                         <div>
-                        <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px;">BUSCAR</button>
+                            <button type="button" class="btn boton-buscar" onclick="buscar()">BUSCAR</button>
+                        </div>
                     </div>
-                    </div>
+                    
+                    <style>
+                        .boton-numero {
+                            background-color: #005E56;
+                            color: rgb(255, 255, 255);
+                            font-size: 40px;
+                            width: 100px;
+                            transition: background-color 0.3s ease;
+                        }
+                    
+                        .boton-numero:hover {
+                            background-color: #007d72; /* Cambia a un color más claro en hover */
+                        }
+                    
+                        .boton-buscar {
+                            background-color: #005E56;
+                            color: white;
+                            font-size: 40px;
+                            transition: background-color 0.3s ease;
+                        }
+                    
+                        .boton-buscar:hover {
+                            background-color: #007d72; /* Cambia a un color más claro en hover */
+                        }
+                    </style>
+                    
+                    <script>
+                        function buscar() {
+                            // Lógica de búsqueda
+                        }
+                    </script>
+                    
                 </form>
                 
 

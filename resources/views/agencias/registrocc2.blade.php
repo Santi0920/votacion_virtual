@@ -95,14 +95,11 @@
 
     </div>
 
-    <li class="nav-item" style="margin-left: 30px">
-        <a class="nav-link active text-white" aria-current="page" href="/delegadosa" id="data" style="font-size: 25px">CANDIDATOS</a>
-      </li>
-
-      
-      <li class="nav-item" style="margin-left: 30px">
+    <div class="nav-item" style="margin-left: 0px">
+      <li class="nav-item" >
       <a href="{{ route('imprimir2')}}" class="nav-link active text-white" aria-current="page" href="#" id="data" style="font-size: 25px" target="__blank">GENERAR PDF <img src="img/pdf.png" style="margin-left: 10px; height: 3.0rem"> </a>
     </li>
+    </div>
 
   </ul>
   
@@ -187,13 +184,76 @@
   </div>
 
   <div class="mb-3 w-100" title="Este campo es obligatorio">
-    <label for="cedula" class="form-label fw-semibold">AGENCIA<span class="text-danger" style="font-size:20px;">*</span></label>
-    <input list="agencia" type="text" class="form-control" name="Agencia" id="Agencia" required autocomplete="off">
-</div>
+    <label for="exampleInputEmail1" class="form-label fw-semibold">AGENCIA <span class="text-danger" style="font-size:20px;">*</span></label>
+    <input list="agencia" type="text" class="form-control " name="Agencia" id="Agencia" required autocomplete="off">
+    <div id="agenciaError" style="color: red;" class="fw-bold"></div>
+  </div>
+
+  <datalist id="agencia">
+    <option value="Medellín"></option><option value="Cali"></option><option value="Barranquilla"></option><option value="Cartagena"></option><option value="Jamundí"></option><option value="San Andrés"></option><option value="CaliBC"></option><option value="Palmira"></option><option value="Buga"></option><option value="Buenaventura"></option><option value="Tuluá"></option><option value="Sevilla"></option><option value="Caicedonia"></option><option value="La Unión"></option>
+    <option value="Roldanillo"></option><option value="Cartago"></option><option value="Zarzal"></option><option value="S Quilichao"></option><option value="Yumbo"></option><option value="Pasto"></option><option value="Popayán"></option><option value="Ipiales"></option><option value="Leticia"></option><option value="Soacha"></option><option value="Pereira"></option><option value="Manizales"></option><option value="Monteria"></option><option value="Sincelejo"></option>
+    <option value="Valledupar"></option><option value="Villavicencio"></option><option value="Santa Marta"></option><option value="Duitama"></option><option value="Bogotá Norte"></option><option value="Pasto"></option><option value="Bogotá Centro"></option><option value="Bogotá Elemento"></option><option value="Bogotá TC"></option><option value="Tunja"></option><option value="Ibagué"></option><option value="Bucaramanga"></option><option value="Cúcuta"></option><option value="Zipaquirá"></option>
+    <option value="Armenia"></option><option value="Neiva"></option><option value="Riohacha"></option><option value="Yopal"></option><option value="Facatativá"></option><option value="Girardot">
+  </datalist>
+
+<script>
+  var agenciaInput = document.getElementById('Agencia');
+  var agenciaError = document.getElementById('agenciaError');
+
+  agenciaInput.addEventListener('input', function() {
+    var agencia = agenciaInput.value.trim();
+    var opcionesAgencia = document.getElementById('agencia').options;
+    var valorValido = false;
+
+    for (var i = 0; i < opcionesAgencia.length; i++) {
+      if (agencia.toLowerCase() === opcionesAgencia[i].value.toLowerCase()) {
+        valorValido = true;
+        break;
+      }
+    }
+
+    if (valorValido) {
+      agenciaError.innerHTML = '';
+    } else {
+      agenciaError.innerHTML = 'Seleccione una opción de la lista';
+    }
+  });
+
+  agenciaInput.setAttribute('maxlength', '20');
+
+  function validateForm() {
+    var agenciaInput = document.getElementById('Agencia');
+      var agenciaError = document.getElementById('agenciaError');
+
+      var agencia = agenciaInput.value.trim();
+      var opcionesAgencia = document.getElementById('agencia').options;
+      var valorValido = false;
+
+      for (var i = 0; i < opcionesAgencia.length; i++) {
+        if (agencia.toLowerCase() === opcionesAgencia[i].value.toLowerCase()) {
+          valorValido = true;
+          break;
+        }
+      }
+
+      if (!valorValido) {
+        Swal.fire({
+          icon: 'error',
+          title: '¡Error!',
+          text: 'En el campo Agencia seleccionar una opción de la lista!',
+          confirmButtonColor: '#005E56'
+        });
+        agenciaError.innerHTML = 'Seleccione una opción de la lista';
+        return false;
+      }
+  }
+    
+</script>
+
 
   <div class="mb-3 w-100" title="Este campo es obligatorio">
     <label for="exampleInputEmail1" class="form-label fw-semibold">CUENTA ASOCIADO <span class="text-danger" style="font-size:20px;">*</span></label>
-    <input type="text" class="form-control " name="Cuenta" id="Cuenta" required autocomplete="off"> 
+    <input type="number" class="form-control " name="Cuenta" id="Cuenta" required autocomplete="off">
   </div>
 
   <div class="text-center">
@@ -208,7 +268,7 @@
 
     </form>
     {{-- FECHA --}}
-    <div class="col-9">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-9">
       <div class="">
         <form action="" method="post">
         <div class="" style="margin-top: 8px; margin-right: -14px;">
@@ -253,8 +313,8 @@
     
         </form>  
       </div>
-    <div style="overflow: auto;" class="table-responsive">
-        <table id="personas" class="hover table table-striped shadow-lg mt-4 table-bordered table-hover col-md-1 p-1">
+    <div style="overflow: auto;" class="">
+        <table id="personas" class="table-responsive hover table table-striped shadow-lg mt-4 table-bordered table-hover col-md-1 p-1">
           <thead class="" style="background-color: #005E56;">
             <tr class="text-white">
               <th class="" scope="col"></th>

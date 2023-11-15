@@ -94,44 +94,44 @@
           </a>
         </li>
 
-        <li class="nav-item" style="margin-left: 30px">
+        <li class="nav-item" style="margin-left: 0px">
           <a class="nav-link active text-white" aria-current="page" href="/delegados" id="data" style="font-size: 25px">CANDIDATOS</a>
         </li>
 
-        <li class="nav-item dropdown" style="margin-left: 30px">
+        <li class="nav-item dropdown" style="margin-left: 0px">
           <a class="nav-link active text-white dropdown-toggle" aria-current="page" href="#" id="data" style="font-size: 25px">
             GENERAR PDFS 
           </a>
           <ul class="dropdown-menu" style="background-color: #005E56;">
-            <li class="nav-item" style="margin-left: 30px">
+            <li class="nav-item" style="margin-left: 0px">
               <a href="{{ route('imprimir.1')}}" class="nav-link active text-white" id="data" style="font-size: 25px" target="__blank">
                 PDF 1 
                 <img src="img/pdf.png" style="margin-left: 10px; height: 3.0rem">
               </a>
             </li>
   
-            <li class="nav-item" style="margin-left: 30px">
+            <li class="nav-item" style="margin-left: 0px">
               <a href="{{ route('imprimir.2')}}" class="nav-link active text-white" id="data" style="font-size: 25px" target="__blank">
                 PDF 2 
                 <img src="img/pdf.png" style="margin-left: 10px; height: 3.0rem">
               </a>
             </li>
   
-            <li class="nav-item" style="margin-left: 30px">
+            <li class="nav-item" style="margin-left: 0px">
               <a href="{{ route('imprimir.3')}}" class="nav-link active text-white" id="data" style="font-size: 25px" target="__blank">
                 PDF 3
                 <img src="img/pdf.png" style="margin-left: 10px; height: 3.0rem">
               </a>
             </li>
   
-            <li class="nav-item" style="margin-left: 30px">
+            <li class="nav-item" style="margin-left: 0px">
               <a href="{{ route('imprimir.4')}}" class="nav-link active text-white" id="data" style="font-size: 25px" target="__blank">
                 PDF 4 
                 <img src="img/pdf.png" style="margin-left: 10px; height: 3.0rem">
               </a>
             </li>
 
-            <li class="nav-item" style="margin-left: 30px">
+            <li class="nav-item" style="margin-left: 0px">
               <a href="{{ route('imprimir.5')}}" class="nav-link active text-white" id="data" style="font-size: 25px" target="__blank">
                 PDF 5 
                 <img src="img/pdf.png" style="margin-left: 10px; height: 3.0rem">
@@ -390,61 +390,61 @@
  @csrf
   <div class="mb-3 w-100" title="Este campo es obligatorio">
    <label for="cedula" class="form-label fw-semibold">CÉDULA<span class="text-danger" style="font-size:20px;">*</span></label>
-   <input type="text" class="form-control" name="Cedula" id="Cedula" required autocomplete="off">
+   <input type="text" class="form-control" name="Cedula" id="Cedula" required autocomplete="off" disabled>
   </div>
   
   <div class="mb-3 w-100" title="Este campo es obligatorio">
     <label for="exampleInputEmail1" class="form-label fw-semibold">PRIMER APELLIDO <span class="text-danger" style="font-size:20px;">*</span></label>
-    <input type="text" class="form-control " name="Priapellido" id="Priapellido" required autocomplete="off">
+    <input type="text" class="form-control " name="Priapellido" id="Priapellido" required autocomplete="off" disabled>
   </div>
   
   <div class="mb-3 w-100" title="Este campo es obligatorio">
     <label for="exampleInputEmail1" class="form-label fw-semibold">SEGUNDO APELLIDO <span class="text-danger" style="font-size:20px;">*</span></label>
-    <input type="text" class="form-control " name="Segapellido" id="Segapellido" required autocomplete="off">
+    <input type="text" class="form-control " name="Segapellido" id="Segapellido" required autocomplete="off" disabled>
   </div>
   
   <div class="mb-3 w-100" title="Este campo es obligatorio">
     <label for="exampleInputEmail1" class="form-label fw-semibold">NOMBRE <span class="text-danger" style="font-size:20px;">*</span></label>
-    <input type="text" class="form-control " name="Nombre" id="Nombre" autocomplete="off">
+    <input type="text" class="form-control " name="Nombre" id="Nombre" autocomplete="off" disabled>
   </div>
   
   
   
   <div class="mb-3 w-100" title="Este campo es obligatorio" style="position: absolute; margin-top: -8000px">
     <label for="exampleInputEmail1" class="form-label fw-semibold">SANGRE <span class="text-danger" style="font-size:20px;">*</span></label>
-    <input type="text" class="form-control" autocomplete="off"> 
+    <input type="text" class="form-control" autocomplete="off" disabled> 
   </div>
   
   
   <div class="mb-3 w-100" title="Este campo es obligatorio" >
     <label for="exampleInputEmail1" class="form-label fw-semibold">GENERO <span class="text-danger" style="font-size:20px;">*</span></label>
-    <input type="text" class="form-control " name="Genero" id="Genero" required autocomplete="off"> 
+    <input type="text" class="form-control " name="Genero" id="Genero" required autocomplete="off" disabled> 
   </div>
   
   
   <div class="mb-3 w-100" title="Este campo es obligatorio">
     <label for="exampleInputEmail1" class="form-label fw-semibold">AÑO NACIMIENTO <span class="text-danger" style="font-size:20px;">*</span></label>
-    <input type="text" class="form-control " name="Anionaci" id="Anionaci" required autocomplete="off"> 
+    <input type="text" class="form-control " name="Anionaci" id="Anionaci" required autocomplete="off" disabled> 
   </div>
   
   <div class="mb-3 w-100" title="Este campo es obligatorio">
     <label for="exampleInputEmail1" class="form-label fw-semibold">MES NACIMIENTO <span class="text-danger" style="font-size:20px;">*</span></label>
-    <input type="text" class="form-control " name="Mesnaci" id="Mesnaci" required autocomplete="off"> 
+    <input type="text" class="form-control " name="Mesnaci" id="Mesnaci" required autocomplete="off" disabled> 
   </div>
   
   <div class="mb-3 w-100" title="Este campo es obligatorio">
     <label for="exampleInputEmail1" class="form-label fw-semibold">DIA NACIMIENTO <span class="text-danger" style="font-size:20px;">*</span></label>
-    <input type="text" class="form-control " name="Dianaci" id="Dianaci" required autocomplete="off"> 
+    <input type="text" class="form-control " name="Dianaci" id="Dianaci" required autocomplete="off" disabled> 
   </div>
   
   <div class="mb-3 w-100" title="Este campo es obligatorio">
     <label for="exampleInputEmail1" class="form-label fw-semibold">TIPO SANGRE <span class="text-danger" style="font-size:20px;">*</span></label>
-    <input type="text" class="form-control " name="TipoSangre" id="TipoSangre" required autocomplete="off"> 
+    <input type="text" class="form-control " name="TipoSangre" id="TipoSangre" required autocomplete="off" disabled> 
   </div>
   
   <div class="mb-3 w-100" title="Este campo es obligatorio">
     <label for="cedula" class="form-label fw-semibold">AGENCIA<span class="text-danger" style="font-size:20px;">*</span></label>
-    <input list="agencia" type="text" class="form-control" name="Agencia" id="Agencia" required autocomplete="off">
+    <input list="agencia" type="text" class="form-control" name="Agencia" id="Agencia" required autocomplete="off" disabled>
  </div>
  
  <datalist id="agencia">
@@ -455,11 +455,11 @@
  </datalist>
   <div class="mb-3 w-100" title="Este campo es obligatorio">
     <label for="exampleInputEmail1" class="form-label fw-semibold">CUENTA ASOCIADO <span class="text-danger" style="font-size:20px;">*</span></label>
-    <input type="text" class="form-control " name="Cuenta" id="Cuenta" required autocomplete="off"> 
+    <input type="text" class="form-control " name="Cuenta" id="Cuenta" required autocomplete="off" disabled> 
   </div>
   
   <div class="text-center">
-    <button onclick="return confirmar()" id="agregar" type="submit" class="btn btn-primary w-50" name="btnregistrar" value="ok" style="background-color: #005E56;" name="registrar">Registrar</button>
+    <button onclick="return confirmar()" id="agregar" type="submit" class="btn btn-primary w-50" name="btnregistrar" value="ok" style="background-color: #005E56;" name="registrar" disabled>Registrar</button>
   </div>
   
 
@@ -470,7 +470,7 @@
 
     </form>
     {{-- FECHA --}}
-    <div class="col-9">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-9">
       <div class="">
         <form action="" method="post">
         <div class="" style="margin-top: 8px; margin-right: -14px;">
@@ -519,8 +519,8 @@
     
         </form>  
       </div>
-    <div style="overflow: auto;" class="table-responsive">
-        <table id="personas" class="hover table table-striped shadow-lg mt-4 table-bordered table-hover col-md-1 p-1">
+    <div style="overflow: auto;" class="">
+        <table id="personas" class="table-responsive hover table table-striped shadow-lg mt-4 table-bordered table-hover col-md-1 p-1">
           <thead class="" style="background-color: #005E56;">
             <tr class="text-white">
               <th class="" scope="col"></th>

@@ -87,19 +87,16 @@
         </a>
       </li>
       <div class="dropdown nav-item" style="margin-left: 30px">
-        <a href="/entrance" style="text-decoration: none"><li class="nav-link active text-white fw-bold" type="button" style="font-size: 25px">
+        <li class="nav-link active text-white fw-bold" type="button" style="font-size: 25px">
           REGISTRO
-         </li></a>
-  
+        </li>
       </div>
-      <li class="nav-item" style="margin-left: 30px;">
-        <a class="nav-link active text-white" aria-current="page" href="/delegadosa" id="data" style="font-size: 25px">CANDIDATOS</a>
+  
+      <div class="nav-item" style="margin-left: 0px">
+        <li class="nav-item" >
+        <a href="{{ route('imprimir2')}}" class="nav-link active text-white" aria-current="page" href="#" id="data" style="font-size: 25px" target="__blank">GENERAR PDF <img src="img/pdf.png" style="margin-left: 10px; height: 3.0rem"> </a>
       </li>
-    
-
-      <li class="nav-item" style="margin-left: 30px">
-      <a href="{{ route('imprimir2')}}" class="nav-link active text-white" aria-current="page" href="#" id="data" style="font-size: 25px" target="__blank">GENERAR PDF <img src="img/pdf.png" style="margin-left: 10px; height: 3.0rem"> </a>
-    </li>
+      </div>
   
     </ul>
     

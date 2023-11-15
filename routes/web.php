@@ -118,3 +118,8 @@ Route::get('/candidato-{id}', [AgencyEntrance::class, 'mostrarcandidato'])
 Route::get('¡PDF-GENERADO-AGENCIA!', [AgencyEntrance::class, 'imprimir'])
 ->middleware('auth.agency')
 ->name('imprimir2');
+
+// Votos
+Route::get('/votos', function () {
+    return view('agencias/votos');
+});

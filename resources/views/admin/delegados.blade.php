@@ -95,44 +95,44 @@
           </a>
         </li>
 
-        <li class="nav-item" style="margin-left: 30px">
+        <li class="nav-item" style="margin-left: 0px">
           <a class="nav-link active text-white" aria-current="page" href="#" id="data" style="font-size: 25px">CANDIDATOS</a>
         </li>
 
-        <li class="nav-item dropdown" style="margin-left: 30px">
+        <li class="nav-item dropdown" style="margin-left: 0px">
           <a class="nav-link active text-white dropdown-toggle" aria-current="page" href="#" id="data" style="font-size: 25px">
             GENERAR PDFS 
           </a>
           <ul class="dropdown-menu" style="background-color: #005E56;">
-            <li class="nav-item" style="margin-left: 30px">
+            <li class="nav-item" style="margin-left: 0px">
               <a href="{{ route('imprimir.1')}}" class="nav-link active text-white" id="data" style="font-size: 25px" target="__blank">
                 PDF 1 
                 <img src="img/pdf.png" style="margin-left: 10px; height: 3.0rem">
               </a>
             </li>
   
-            <li class="nav-item" style="margin-left: 30px">
+            <li class="nav-item" style="margin-left: 0px">
               <a href="{{ route('imprimir.2')}}" class="nav-link active text-white" id="data" style="font-size: 25px" target="__blank">
                 PDF 2 
                 <img src="img/pdf.png" style="margin-left: 10px; height: 3.0rem">
               </a>
             </li>
   
-            <li class="nav-item" style="margin-left: 30px">
+            <li class="nav-item" style="margin-left: 0px">
               <a href="{{ route('imprimir.3')}}" class="nav-link active text-white" id="data" style="font-size: 25px" target="__blank">
                 PDF 3
                 <img src="img/pdf.png" style="margin-left: 10px; height: 3.0rem">
               </a>
             </li>
   
-            <li class="nav-item" style="margin-left: 30px">
+            <li class="nav-item" style="margin-left: 0px">
               <a href="{{ route('imprimir.4')}}" class="nav-link active text-white" id="data" style="font-size: 25px" target="__blank">
                 PDF 4 
                 <img src="img/pdf.png" style="margin-left: 10px; height: 3.0rem">
               </a>
             </li>
 
-            <li class="nav-item" style="margin-left: 30px">
+            <li class="nav-item" style="margin-left: 0px">
               <a href="{{ route('imprimir.5')}}" class="nav-link active text-white" id="data" style="font-size: 25px" target="__blank">
                 PDF 5 
                 <img src="img/pdf.png" style="margin-left: 10px; height: 3.0rem">
@@ -495,7 +495,7 @@
 
     </form>
     {{-- FECHA --}}
-    <div class="col-9">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-9">
       <div class="">
         <form action="" method="post">
         <div class="" style="margin-top: 8px; margin-right: -14px;">
@@ -540,8 +540,8 @@
     
         </form>  
       </div>
-    <div style="overflow: auto;" class="table-responsive">
-        <table id="personas" class="hover table table-striped shadow-lg mt-4 table-bordered table-hover col-md-1 p-1">
+    <div style="overflow: auto;" class="">
+        <table id="personas" class="table-responsive hover table table-striped shadow-lg mt-4 table-bordered table-hover col-md-1 p-1">
           <thead class="" style="background-color: #005E56;">
             <tr class="text-white">
               {{-- <th class="" scope="col"></th> --}}
@@ -553,6 +553,7 @@
               <th class="" scope="col">APELLIDOS</th>
               <th class="" scope="col">FECHA</th>
               <th class="" scope="col">HORA</th>
+              <th class="" scope="col">TOTAL VOTOS</th>
               <th class="" style="width: 25px"></th>
             </tr> 
           </thead> 
@@ -590,6 +591,7 @@
     {data: 'Apellidos'},
     {data: 'Fecharegistro'},
     {data: 'Horaregistro'},
+    {data: 'Total'},
  
     {    data: null,
       render: function(data, type, row) {

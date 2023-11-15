@@ -86,20 +86,19 @@
           </span>
         </a>
       </li>
+
       <div class="dropdown nav-item" style="margin-left: 30px">
-        <a href="/entrance" style="text-decoration: none"><li class="nav-link active text-white fw-bold" type="button" style="font-size: 25px">
-          REGISTRO
-         </li></a>
+        <li class="nav-link active text-white fw-bold" type="button">
+          <a href="/entrance" class="text-light" style="text-decoration: none; font-size: 25px">REGISTRO</a> 
+         </li>
   
       </div>
-      <li class="nav-item" style="margin-left: 30px;">
-        <a class="nav-link active text-white" aria-current="page" href="/delegadosa" id="data" style="font-size: 25px">CANDIDATOS</a>
+  
+      <div class="nav-item" style="margin-left: 0px">
+        <li class="nav-item" >
+        <a href="{{ route('imprimir2')}}" class="nav-link active text-white" aria-current="page" href="#" id="data" style="font-size: 25px" target="__blank">GENERAR PDF <img src="img/pdf.png" style="margin-left: 10px; height: 3.0rem"> </a>
       </li>
-    
-
-      <li class="nav-item" style="margin-left: 30px">
-      <a href="{{ route('imprimir2')}}" class="nav-link active text-white" aria-current="page" href="#" id="data" style="font-size: 25px" target="__blank">GENERAR PDF <img src="img/pdf.png" style="margin-left: 10px; height: 3.0rem"> </a>
-    </li>
+      </div>
   
     </ul>
     
@@ -169,22 +168,22 @@
       </div>
     <div>
 
-        <div class=" mt-4 mb-4">
+        <div class=" mt-3 mb-5">
             <div class="d-flex justify-content-center">
-                <form id="calculadoraForm" class="text-center">
+                <form id="calculadoraForm" class="text-center" method="POST" action="{{route('mostrarcandidato.agency', 'id')}}"> 
                     @csrf
-                    <label for="numero" class="form-label me-2" style="font-size:40px">Ingrese el numero de tarjetón:</label>
+                    <label for="numero" class="form-label me-2 fw-semibold" style="font-size:40px">Ingrese el numero de tarjetón:</label>
 
                     <div class="mb-3 d-flex align-items-center justify-content-center">
-                        <input type="text" class="form-control me-2" id="numero" required readonly oninput="limitarInput(this, 2)" onkeypress="return esNumero(event)">
+                        <input type="text" class="form-control me-2 text-center w-50" id="numero" name="NoTarjeton" style="font-size:25px" required readonly>
                         <button type="button" class="btn btn-success" style="background-color:#005E56; color:white; font-size:25px" onclick="borrar()">←</button>
                     </div>
-
                     <div class="d-grid gap-3">
                         <div>
-                            <button type="button" class="btn boton-numero" onclick="agregarNumero(7)">7</button>
-                            <button type="button" class="btn boton-numero" onclick="agregarNumero(8)">8</button>
-                            <button type="button" class="btn boton-numero" onclick="agregarNumero(9)">9</button>
+                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(7)">7</button>
+
+                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(8)">8</button>
+                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(9)">9</button>
                         </div>
                         
                         <div>
@@ -204,8 +203,8 @@
                         </div>
                     
                         <div>
-                            <button type="button" class="btn boton-buscar" onclick="buscar()">BUSCAR</button>
-                        </div>
+                        <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px;">BUSCAR</button>
+                    </div>
                     </div>
                     
                     <style>
@@ -266,7 +265,10 @@
             let inputResultado = document.getElementById('resultado');
         
             function agregarNumero(numero) {
+              if (inputNumero.value.length < 2) 
+              {
                 inputNumero.value += numero;
+              }
             }
         
 
@@ -280,31 +282,8 @@
                 inputNumero.value = inputNumero.value.slice(0, -1);
             }
         
-
-        
-            function guardarResultado() {
-                // Puedes agregar lógica para guardar el resultado, por ejemplo, enviar a un servidor
-                // Aquí puedes usar AJAX o axios para hacer una solicitud al servidor
-                // En este ejemplo, simplemente mostraremos una alerta
-                alert('Resultado guardado: ' + inputResultado.value);
-            }
         </script>
-    <script>
-        function limitarInput(elemento, maxLongitud) {
-            // Eliminar caracteres no numéricos
-            elemento.value = elemento.value.replace(/[^\d]/g, '');
-    
-            // Limitar la longitud
-            if (elemento.value.length > maxLongitud) {
-                elemento.value = elemento.value.slice(0, maxLongitud);
-            }
-        }
-    
-        function esNumero(event) {
-            // Permite solo números
-            return /\d/.test(String.fromCharCode(event.keyCode));
-        }
-    </script>
+
     
 
     <script>

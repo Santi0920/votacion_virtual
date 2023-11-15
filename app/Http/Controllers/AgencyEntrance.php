@@ -66,107 +66,131 @@ class AgencyEntrance extends Controller
         }
     }
 
-
-    public function updatevotos ($id, Request $request){
-
-
-
-        $usuarioActual = Auth::user();
-        $agenciaU = $usuarioActual->agenciau;
-        
-
-        $agenciaColumnaMapping = [
-            'Bogotá Elemento' => 13,
-            'CaliBC' => 30,
-            'Cali' => 31,
-            'Palmira' => 32,
-            'Buga' => 34,
-            'Buenaventura' => 33,
-            'Tuluá' => 35,
-            'Sevilla' => 36,
-            'La Unión' => 37,
-            'Roldanillo' => 38,
-            'Cartago' => 39,
-            'Zarzal' => 40,
-            'Caicedonia' => 41,
-            'S Quilichao' => 42,
-            'Yumbo' => 43,
-            'Jamundí' => 44,
-            'Pasto' => 45,
-            'Popayán' => 46,
-            'Ipiales' => 47,
-            'Leticia' => 48,
-            'Puerto Asis' => 49,
-            'Soacha' => 68,
-            'Manizales' => 70,
-            'Zipaquirá' => 73,
-            'Facatativá' => 75,
-            'Pereira' => 74,
-            'Girardot' => 76,
-            'San Andrés' => 77,
-            'Armenia' => 78,
-            'Medellín' => 80,
-            'Monteria' => 81,
-            'Sincelejo' => 82,
-            'Yopal' => 83,
-            'Riohacha' => 84,
-            'Valledupar' => 85,
-            'Cartagena' => 86,
-            'Santa Marta' => 88,
-            'Duitama' => 89,
-            'Bogotá Centro' => 90,
-            'Bogotá TC' => 91,
-            'Bogotá Norte' => 92,
-            'Villavicencio' => 93,
-            'Tunja' => 94,
-            'Ibagué' => 95,
-            'Neiva' => 96,
-            'Bucaramanga' => 97,
-            'Cúcuta' => 98,
-        ];
-
-
-
-        
-        $nombreResult = DB::select("SELECT Nombre FROM delegados WHERE ID = $id");
-        $apellidosResult = DB::select("SELECT Apellidos FROM delegados WHERE ID = $id");
-
-        $nombre = $nombreResult[0]->Nombre;
-        $apellidos = $apellidosResult[0]->Apellidos;
-
-        $nombrecompleto = $nombre . ' ' . $apellidos;
-        $columna = $agenciaColumnaMapping[$agenciaU];
-
-
-
-        $resultado = DB::select("SELECT columna_$columna FROM delegados WHERE ID = $id");
-
-        if (!empty($resultado)) {
-            $primerResultado = $resultado[0]; 
-        
-            $numero = intval($primerResultado->{"columna_$columna"});
-        
-            if ($numero > 0) {
-                return back()->with("incorrecto",  "YA HA REGISTRADO LOS VOTOS POR EL CANDIDATO!");
-            } else {
-                if (array_key_exists($agenciaU, $agenciaColumnaMapping)) {
-                    $columna = $agenciaColumnaMapping[$agenciaU];
-        
-                    $sql = DB::update("UPDATE delegados SET columna_$columna=? WHERE ID = $id", [
-                        $request->Votos,
-                    ]);
-                }
-            }
-        }
-            
-        if ($sql) {
-
-            return back()->with("correcto",  $request->Votos . " voto(s) añadido(s) correctamente a ".$nombrecompleto."!");
-        } else {
-            return back()->with("incorrecto", "¡Error al añadir votos al registro!");
-        }
-
+    public function mostrarcandidato(Request $request){
+        return view('agencias/votos');
     }
+
+
+
+
+    public function votarcandidato(Request $request, $id)
+    {
+        $Tarjeton = DB::select("SELECT Nombre, Apellidos, NoTarjeton, AgenciaD FROM delegados WHERE NoTarjeton = $request->NoTarjeton");
+   
+        if(empty($Tarjeton)){
+            return back()->with("incorrecto", "Tarjetón #$request->NoTarjeton, ¡NO EXISTE!");
+        }else{
+      
+            return view('agencias/candidato', ['Tarjeton' => $Tarjeton]);
+        }
+    }
+
+
+
+
+
+
+
+    // public function updatevotos ($id, Request $request){
+
+
+
+    //     $usuarioActual = Auth::user();
+    //     $agenciaU = $usuarioActual->agenciau;
+        
+
+    //     $agenciaColumnaMapping = [
+    //         'Bogotá Elemento' => 13,
+    //         'CaliBC' => 30,
+    //         'Cali' => 31,
+    //         'Palmira' => 32,
+    //         'Buga' => 34,
+    //         'Buenaventura' => 33,
+    //         'Tuluá' => 35,
+    //         'Sevilla' => 36,
+    //         'La Unión' => 37,
+    //         'Roldanillo' => 38,
+    //         'Cartago' => 39,
+    //         'Zarzal' => 40,
+    //         'Caicedonia' => 41,
+    //         'S Quilichao' => 42,
+    //         'Yumbo' => 43,
+    //         'Jamundí' => 44,
+    //         'Pasto' => 45,
+    //         'Popayán' => 46,
+    //         'Ipiales' => 47,
+    //         'Leticia' => 48,
+    //         'Puerto Asis' => 49,
+    //         'Soacha' => 68,
+    //         'Manizales' => 70,
+    //         'Zipaquirá' => 73,
+    //         'Facatativá' => 75,
+    //         'Pereira' => 74,
+    //         'Girardot' => 76,
+    //         'San Andrés' => 77,
+    //         'Armenia' => 78,
+    //         'Medellín' => 80,
+    //         'Monteria' => 81,
+    //         'Sincelejo' => 82,
+    //         'Yopal' => 83,
+    //         'Riohacha' => 84,
+    //         'Valledupar' => 85,
+    //         'Cartagena' => 86,
+    //         'Santa Marta' => 88,
+    //         'Duitama' => 89,
+    //         'Bogotá Centro' => 90,
+    //         'Bogotá TC' => 91,
+    //         'Bogotá Norte' => 92,
+    //         'Villavicencio' => 93,
+    //         'Tunja' => 94,
+    //         'Ibagué' => 95,
+    //         'Neiva' => 96,
+    //         'Bucaramanga' => 97,
+    //         'Cúcuta' => 98,
+    //     ];
+
+
+
+        
+    //     $nombreResult = DB::select("SELECT Nombre FROM delegados WHERE ID = $id");
+    //     $apellidosResult = DB::select("SELECT Apellidos FROM delegados WHERE ID = $id");
+
+    //     $nombre = $nombreResult[0]->Nombre;
+    //     $apellidos = $apellidosResult[0]->Apellidos;
+
+    //     $nombrecompleto = $nombre . ' ' . $apellidos;
+    //     $columna = $agenciaColumnaMapping[$agenciaU];
+
+
+
+    //     $resultado = DB::select("SELECT columna_$columna FROM delegados WHERE ID = $id");
+
+    //     if (!empty($resultado)) {
+    //         $primerResultado = $resultado[0]; 
+        
+    //         $numero = intval($primerResultado->{"columna_$columna"});
+        
+    //         if ($numero > 0) {
+    //             return back()->with("incorrecto",  "YA HA REGISTRADO LOS VOTOS POR EL CANDIDATO!");
+    //         } else {
+    //             if (array_key_exists($agenciaU, $agenciaColumnaMapping)) {
+    //                 $columna = $agenciaColumnaMapping[$agenciaU];
+        
+    //                 $sql = DB::update("UPDATE delegados SET columna_$columna=? WHERE ID = $id", [
+    //                     $request->Votos,
+    //                 ]);
+    //             }
+    //         }
+    //     }
+            
+    //     if ($sql) {
+
+    //         return back()->with("correcto",  $request->Votos . " voto(s) añadido(s) correctamente a ".$nombrecompleto."!");
+    //     } else {
+    //         return back()->with("incorrecto", "¡Error al añadir votos al registro!");
+    //     }
+
+    // }
 
     public function imprimir(){
         $sql = DB::select("SELECT * FROM delegados ORDER BY CAST(NoTarjeton AS SIGNED) ASC");

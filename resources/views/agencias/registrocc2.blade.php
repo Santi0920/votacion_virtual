@@ -95,11 +95,6 @@
 
     </div>
 
-    <div class="nav-item" style="margin-left: 0px">
-      <li class="nav-item" >
-      <a href="{{ route('imprimir2')}}" class="nav-link active text-white" aria-current="page" href="#" id="data" style="font-size: 25px" target="__blank">GENERAR PDF <img src="img/pdf.png" style="margin-left: 10px; height: 3.0rem"> </a>
-    </li>
-    </div>
 
   </ul>
   
@@ -353,7 +348,7 @@
   "ajax": "{{ route('datatable.agency') }}",
 
   "columns": [
-    {data: 'ID', title: '#'},
+    {data: 'ID'},
     {data: 'Agencia'},
     {data: 'Cedula'},
     {data: 'Cuenta'},
@@ -379,21 +374,80 @@
     {    data: null,
       render: function(data, type, row) {
         var id = row.ID;
-        var url = "{{route ('update.delegatevotes', ':id') }}"; 
+        var url = "{{ route('votarcandidatoid.agency', ':id') }}"; 
         var today = new Date().toISOString().split('T')[0];
         url = url.replace(':id', id);
-        
-        var html = '';
 
-      var mostrarCandidato = '<div class="text-center"><a onclick="return confirmar()" href="{{ route('mostrarcandidato.agency', ':id') }}" type="submit" class="btn btn-small btn-warning" name="eliminar" value="ok"><i class="fa-solid fa-ticket"></i></a></div>'.replace(':id', row.ID);
+        if(row.Voto == 0){
+        var mostrarCandidato = `<div class="text-center"><a href="" id="modalLink_${id}" type="submit" class="btn btn-small btn-warning edit-button edit" data-bs-toggle="modal" data-bs-target="#modalEditar_${id}" data-id="${id}" style="margin-right: "><i class="fa-solid fa-ticket"></i></a></div>
+        <div class="modal fade" id="modalEditar_${id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                      <div class="modal-content">
+                        <button type="button" data-bs-dismiss="modal" class="btn-close p-3" aria-label="Close"></button>
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                          <h1 class="modal-title text-center" id="modificar">No. TARJETÓN</h1>
+                        </div>
+                        <hr>
+                        <div class="modal-body">
+                          <form action="`+url+`" class="text-center" method="POST" enctype="multipart/form-data" id="formulario" onclick="digitar()">
+                            @csrf
+
+                    <label for="numero" class="form-label me-2 fw-semibold" style="font-size:40px">Ingrese el numero de tarjetón:</label>
+
+                    <div class="mb-3 d-flex align-items-center justify-content-center">
+                        <input type="text" class="form-control me-2 text-center w-50" id="numero" name="NoTarjeton" style="font-size:25px" required maxlength="2">
+                        <button type="button" class="btn btn-success" style="background-color:#005E56; color:white; font-size:25px" onclick="borrar()">←</button>
+                    </div>
+                    <div class="d-grid gap-3">
+                        <div>
+                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(7)">7</button>
+                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(8)">8</button>
+                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(9)">9</button>
+                        </div>
+                        
+                        <div>
+                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(4)">4</button>
+                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(5)">5</button>
+                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(6)">6</button>
+                        </div>
+                        <div>
+                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(1)">1</button>
+                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(2)">2</button>
+                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(3)">3</button>
+                        </div>
+                        <div>
+                            <button type="button" class="btn" style="background-color:#005E56; color:white; font-size:40px; width: 100px;" onclick="agregarNumero(0)">0</button>
+                        </div>
+                        <div>
+                        <button onclick="return confirmar()" id="btnBuscar" type="submit" class="btn fw-semibold" style="background-color:#005E56; color:white; font-size:40px;">BUSCAR</button>
+                    </div>
+                    </div>
+
+               </div>
+
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>`;
+                }else{
+                  var mostrarCandidato = `
+                  <div class="text-center">
+                    <a onclick="yavoto(event)" href="#" class="btn btn-small btn-warning edit-button edit" data-bs-toggle="modal" style="margin-right: ">
+                      <i class="fa-solid fa-ticket"></i>
+                    </a>
+                  </div>`;
+                
+                }
 
   return mostrarCandidato;
 
 }
   }
-  ],
+],
+  "order": [[0, 'desc']],
 
-  "lengthMenu": [[5], [5]],
+  "lengthMenu": [[1], [1]],
   "language": {
     "lengthMenu": "Mostrar _MENU_ registros por página",
     "zeroRecords": "No existe!",
@@ -410,12 +464,48 @@
 
 
 
+        
+
 function csesion(){
             var respuesta=confirm("¿Estas seguro que deseas cerrar sesión?")
             return respuesta
           }
-         
-        </script>
+
+
+
+
+
+
+
+
+
+function agregarNumero(numero) {
+    let inputNumero = document.getElementById('numero');
+    if (inputNumero.value.length < 2) {
+        inputNumero.value += numero;
+    }
+}
+
+
+function borrar() {
+    let inputNumero = document.getElementById('numero');
+    inputNumero.value = inputNumero.value.slice(0, -1);
+}
+
+function yavoto(e) {
+  e.preventDefault();
+  Swal.fire({
+    icon: 'warning',
+    title: '<strong>¡EL ASOCIADO YA VOTÓ!</strong>',
+    html: '',
+    confirmButtonColor: '#005E56',
+    timer: 5000
+  });
+}
+
+</script>
+
+
         
         
     </div>

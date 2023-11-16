@@ -92,12 +92,7 @@
          </li>
   
       </div>
-  
-      <div class="nav-item" style="margin-left: 0px">
-        <li class="nav-item" >
-        <a href="{{ route('imprimir2')}}" class="nav-link active text-white" aria-current="page" href="#" id="data" style="font-size: 25px" target="__blank">GENERAR PDF <img src="img/pdf.png" style="margin-left: 10px; height: 3.0rem"> </a>
-      </li>
-      </div>
+
       
     </ul>
     
@@ -181,17 +176,19 @@
                     
                 @endforeach   
             </div>
+            <input name="asd" value="{{$NoTarjeton}}">
         </div>
+
+        
+
+        
 
         <div class="text-center mb-5">
-            {{-- <form method="POST" action="{{route('votoporcandidato.agency', 'id')}}" >
-                @csrf --}}
-                <a href="/votos-{{}}"><button type="submit" class="btn fw-semibold border border-dark btn-warning me-5" style="font-size:40px;"><i class="fa-solid fa-arrow-left me-2"></i></i>VOLVER</button></a>
-                <a href=""><button type="submit" class="btn fw-semibold border border-dark" style="background-color:#005E56; color:white; font-size:40px;">VOTAR</button></a>
-            {{-- </form> --}}
+                <a href="/entrance"><button type="submit" class="btn fw-semibold border border-dark btn-warning me-5" style="font-size:40px;"><i class="fa-solid fa-arrow-left me-2"></i></i>VOLVER</button></a>
+                <a onclick="return confirmar()" href="{{route('votoporcandidato.agency', $id)}}"><button type="submit" class="btn fw-semibold border border-dark" style="background-color:#005E56; color:white; font-size:40px;">VOTAR</button></a>
         </div>
 
-
+        
 
     </div>
 
@@ -229,16 +226,18 @@
                 inputNumero.value = inputNumero.value.slice(0, -1);
             }
         
-        </script>
 
-    
-
-    <script>
-          function csesion(){
+            function csesion(){
             var respuesta=confirm("¿Estas seguro que deseas cerrar sesión?")
             return respuesta
           }
+
+          function confirmar(){
+            var respuesta=confirm("¿Confirmas tu votó?")
+            return respuesta
+          }
         </script>
+
         
 
         

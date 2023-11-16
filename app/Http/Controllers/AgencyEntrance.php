@@ -14,7 +14,7 @@ class AgencyEntrance extends Controller
         $usuarioActual = Auth::user();
         $agenciaU = $usuarioActual->agenciau;
         $user = DB::select("
-        SELECT * FROM entrada WHERE Agencia = '$agenciaU'");
+        SELECT * FROM entrada WHERE Agencia = '$agenciaU' ORDER BY ID DESC");
 
         return datatables()->of($user)->toJson();
 
@@ -67,30 +67,31 @@ class AgencyEntrance extends Controller
     }
     //REGRESA LA VISTA VOTOS Y EN EL WEB DE LE PASA EL ID {{ID}}
     public function mostrarcandidato(Request $request){
-        return view('agencias/votos');
+        return view('agencias/candidato');
     }
 
 
     //VISTA QUE OBTIENE LA INFORMACION DEL CANDIDATO
-    public function votarcandidato(Request $request, $id)
+    public function votarcandidato(Request $request, $id){
     {
         $Tarjeton = DB::select("SELECT Foto, ID, Nombre, Apellidos, NoTarjeton, AgenciaD FROM delegados WHERE NoTarjeton = $request->NoTarjeton");
-   
+        $NoTarjeton = $request->NoTarjeton;
         if(empty($Tarjeton)){
             return back()->with("incorrecto", "Tarjetón #$request->NoTarjeton, ¡NO EXISTE!");
         }else{
-      
-            return view('agencias/candidato', ['Tarjeton' => $Tarjeton]);
+
+            return view('agencias/candidato', ['Tarjeton' => $Tarjeton, 'id' => $id, 'NoTarjeton' => $NoTarjeton]);
         }
     }
+}
 
 
-    public function votar($id){
+    public function votar(Request $request, $id){
         $Voto = DB::select("SELECT Voto, Cedula, Agencia FROM entrada WHERE ID = ?", [$id]);
     
         if(empty($Voto)){
-            // return redirect('/entrance')->with("incorrecto", "¡El registro no existe!");
-            dd($Voto);
+            return redirect('/entrance')->with("incorrecto", "¡El registro no existe!");
+
         }
     
         $estadoVoto = $Voto[0]->Voto;
@@ -101,24 +102,44 @@ class AgencyEntrance extends Controller
             return redirect('/entrance')->with("incorrecto", "¡El Asociado con cc. $Cedula YA VOTÓ!");
         }
     
-        $updateSuccessful = false;
+
     
         if($estadoVoto == 0){
-            $sql = DB::update("UPDATE entrada SET Voto = 1 WHERE ID = ?", [$id]);
-            if($Agencia == 'Cali'){
-                $sql2 = DB::update("UPDATE delegados SET columna_31 = columna_31+1 WHERE ID = ?", [$id]);
+
+            if($Agencia == 'Bogotá Elemento') {
+                $sql2 = DB::update("UPDATE delegados SET columna_13 = columna_13+1 WHERE NoTarjeton = ?", [$id]);
+            } else if($Agencia == 'CaliBC') {
+                $sql2 = DB::update("UPDATE delegados SET columna_30 = columna_30+1 WHERE NoTarjeton = ?", [$id]);
+            } else if($Agencia == 'Cali') {
+                $sql2 = DB::update("UPDATE delegados SET columna_31 = columna_31+1 WHERE NoTarjeton = ?", [100]);
+            } else if($Agencia == 'Palmira') {
+                $sql2 = DB::update("UPDATE delegados SET columna_32 = columna_32+1 WHERE NoTarjeton = ?", [$id]);
+            } else if($Agencia == 'Buga') {
+                $sql2 = DB::update("UPDATE delegados SET columna_34 = columna_34+1 WHERE NoTarjeton = ?", [$id]);
+            } else if($Agencia == 'Buenaventura') {
+                $sql2 = DB::update("UPDATE delegados SET columna_33 = columna_33+1 WHERE NoTarjeton = ?", [$id]);
+            } else if($Agencia == 'Tuluá') {
+                $sql2 = DB::update("UPDATE delegados SET columna_35 = columna_35+1 WHERE NoTarjeton = ?", [$id]);
+            } else if($Agencia == 'Sevilla') {
+                $sql2 = DB::update("UPDATE delegados SET columna_36 = columna_36+1 WHERE NoTarjeton = ?", [$id]);
+            } else if($Agencia == 'La Unión') {
+                $sql2 = DB::update("UPDATE delegados SET columna_37 = columna_37+1 WHERE NoTarjeton = ?", [$id]);
+            } else if($Agencia == 'Roldanillo') {
+                $sql2 = DB::update("UPDATE delegados SET columna_38 = columna_38+1 WHERE NoTarjeton = ?", [$id]);
             }
     
             
-            $updateSuccessful = $sql && (isset($sql2) ? $sql2 : true);
+
         }
     
-        if($updateSuccessful){
-            // If the update was successful, redirect to the /entrance view with a success message
-            return redirect('/entrance')->with("correcto", "¡El voto se registró correctamente!");
+        if($sql2){
+            $sql = DB::update("UPDATE entrada SET Voto = 1 WHERE ID = ?", [$id]);
+            // return redirect('/entrance')->with("correcto", "¡El voto se registró correctamente!");
+            dd($id);
         } else {
-            // Otherwise, redirect back with an error message
-            return redirect('/entrance')->with("correcto", "¡Hubo un problema al registrar el voto.!");
+            $tarjeton = $request->asd;
+            dd('asd');
+            // return redirect('/entrance')->with("incorrecto", "¡Hubo un problema al registrar el voto!");
 
         }
     }

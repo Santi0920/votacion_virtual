@@ -86,7 +86,7 @@ class AgencyEntrance extends Controller
 }
 
 
-    public function votar(Request $request, $id){
+    public function votar(Request $request, $id, $NoTarjeton){
         $Voto = DB::select("SELECT Voto, Cedula, Agencia FROM entrada WHERE ID = ?", [$id]);
     
         if(empty($Voto)){
@@ -107,150 +107,111 @@ class AgencyEntrance extends Controller
         if($estadoVoto == 0){
 
             if($Agencia == 'Bogotá Elemento') {
-                $sql2 = DB::update("UPDATE delegados SET columna_13 = columna_13+1 WHERE NoTarjeton = ?", [$id]);
+                $sql2 = DB::update("UPDATE delegados SET columna_13 = columna_13+1 WHERE NoTarjeton = ?", [$NoTarjeton]);
             } else if($Agencia == 'CaliBC') {
-                $sql2 = DB::update("UPDATE delegados SET columna_30 = columna_30+1 WHERE NoTarjeton = ?", [$id]);
+                $sql2 = DB::update("UPDATE delegados SET columna_30 = columna_30+1 WHERE NoTarjeton = ?", [$NoTarjeton]);
             } else if($Agencia == 'Cali') {
-                $sql2 = DB::update("UPDATE delegados SET columna_31 = columna_31+1 WHERE NoTarjeton = ?", [100]);
+                $sql2 = DB::update("UPDATE delegados SET columna_31 = columna_31+1 WHERE NoTarjeton = ?", [$NoTarjeton]);
             } else if($Agencia == 'Palmira') {
-                $sql2 = DB::update("UPDATE delegados SET columna_32 = columna_32+1 WHERE NoTarjeton = ?", [$id]);
+                $sql2 = DB::update("UPDATE delegados SET columna_32 = columna_32+1 WHERE NoTarjeton = ?", [$NoTarjeton]);
             } else if($Agencia == 'Buga') {
-                $sql2 = DB::update("UPDATE delegados SET columna_34 = columna_34+1 WHERE NoTarjeton = ?", [$id]);
+                $sql2 = DB::update("UPDATE delegados SET columna_34 = columna_34+1 WHERE NoTarjeton = ?", [$NoTarjeton]);
             } else if($Agencia == 'Buenaventura') {
-                $sql2 = DB::update("UPDATE delegados SET columna_33 = columna_33+1 WHERE NoTarjeton = ?", [$id]);
+                $sql2 = DB::update("UPDATE delegados SET columna_33 = columna_33+1 WHERE NoTarjeton = ?", [$NoTarjeton]);
             } else if($Agencia == 'Tuluá') {
-                $sql2 = DB::update("UPDATE delegados SET columna_35 = columna_35+1 WHERE NoTarjeton = ?", [$id]);
+                $sql2 = DB::update("UPDATE delegados SET columna_35 = columna_35+1 WHERE NoTarjeton = ?", [$NoTarjeton]);
             } else if($Agencia == 'Sevilla') {
-                $sql2 = DB::update("UPDATE delegados SET columna_36 = columna_36+1 WHERE NoTarjeton = ?", [$id]);
+                $sql2 = DB::update("UPDATE delegados SET columna_36 = columna_36+1 WHERE NoTarjeton = ?", [$NoTarjeton]);
             } else if($Agencia == 'La Unión') {
-                $sql2 = DB::update("UPDATE delegados SET columna_37 = columna_37+1 WHERE NoTarjeton = ?", [$id]);
+                $sql2 = DB::update("UPDATE delegados SET columna_37 = columna_37+1 WHERE NoTarjeton = ?", [$NoTarjeton]);
             } else if($Agencia == 'Roldanillo') {
-                $sql2 = DB::update("UPDATE delegados SET columna_38 = columna_38+1 WHERE NoTarjeton = ?", [$id]);
+                $sql2 = DB::update("UPDATE delegados SET columna_38 = columna_38+1 WHERE NoTarjeton = ?", [$NoTarjeton]);
+            }else if ($Agencia == 'Cartago') {
+                $sql2 = DB::update("UPDATE delegados SET columna_39 = columna_39+1 WHERE NoTarjeton = ?", [$NoTarjeton]);
+            } else if ($Agencia == 'Zarzal') {
+                $sql2 = DB::update("UPDATE delegados SET columna_40 = columna_40+1 WHERE NoTarjeton = ?", [$NoTarjeton]);
+            } else if ($Agencia == 'Caicedonia') {
+                $sql2 = DB::update("UPDATE delegados SET columna_41 = columna_41+1 WHERE NoTarjeton = ?", [$NoTarjeton]);
+            } else if ($Agencia == 'S Quilichao') {
+                $sql2 = DB::update("UPDATE delegados SET columna_42 = columna_42+1 WHERE NoTarjeton = ?", [$NoTarjeton]);
+            } else if ($Agencia == 'Yumbo') {
+                $sql2 = DB::update("UPDATE delegados SET columna_43 = columna_43+1 WHERE NoTarjeton = ?", [$NoTarjeton]);
+            } else if ($Agencia == 'Jamundí') {
+                $sql2 = DB::update("UPDATE delegados SET columna_44 = columna_44+1 WHERE NoTarjeton = ?", [$NoTarjeton]);
+            } else if ($Agencia == 'Pasto') {
+                $sql2 = DB::update("UPDATE delegados SET columna_45 = columna_45+1 WHERE NoTarjeton = ?", [$NoTarjeton]);
+            } else if ($Agencia == 'Popayán') {
+                $sql2 = DB::update("UPDATE delegados SET columna_46 = columna_46+1 WHERE NoTarjeton = ?", [$NoTarjeton]);
+            } else if ($Agencia == 'Ipiales') {
+                $sql2 = DB::update("UPDATE delegados SET columna_47 = columna_47+1 WHERE NoTarjeton = ?", [$NoTarjeton]);
+            } else if ($Agencia == 'Leticia') {
+                $sql2 = DB::update("UPDATE delegados SET columna_48 = columna_48+1 WHERE NoTarjeton = ?", [$NoTarjeton]);
+            } else if ($Agencia == 'Puerto Asis') {
+                $sql2 = DB::update("UPDATE delegados SET columna_49 = columna_49+1 WHERE NoTarjeton = ?", [$NoTarjeton]);
+            } else if ($Agencia == 'Soacha') {
+                $sql2 = DB::update("UPDATE delegados SET columna_68 = columna_68+1 WHERE NoTarjeton = ?", [$NoTarjeton]);
+            } else if ($Agencia == 'Manizales') {
+                $sql2 = DB::update("UPDATE delegados SET columna_70 = columna_70+1 WHERE NoTarjeton = ?", [$NoTarjeton]);
+            } else if ($Agencia == 'Zipaquirá') {
+                $sql2 = DB::update("UPDATE delegados SET columna_73 = columna_73+1 WHERE NoTarjeton = ?", [$NoTarjeton]);
+            } else if ($Agencia == 'Facatativá') {
+                $sql2 = DB::update("UPDATE delegados SET columna_75 = columna_75+1 WHERE NoTarjeton = ?", [$NoTarjeton]);
+            } else if ($Agencia == 'Pereira') {
+                $sql2 = DB::update("UPDATE delegados SET columna_74 = columna_74+1 WHERE NoTarjeton = ?", [$NoTarjeton]);
+            } else if ($Agencia == 'Girardot') {
+                $sql2 = DB::update("UPDATE delegados SET columna_76 = columna_76+1 WHERE NoTarjeton = ?", [$NoTarjeton]);
+            } else if ($Agencia == 'San Andrés') {
+                $sql2 = DB::update("UPDATE delegados SET columna_77 = columna_77+1 WHERE NoTarjeton = ?", [$NoTarjeton]);
+            } else if ($Agencia == 'Armenia') {
+                $sql2 = DB::update("UPDATE delegados SET columna_78 = columna_78+1 WHERE NoTarjeton = ?", [$NoTarjeton]);
+            } else if ($Agencia == 'Medellín') {
+                $sql2 = DB::update("UPDATE delegados SET columna_80 = columna_80 + 1 WHERE NoTarjeton = ?", [$NoTarjeton]);
+            } else if ($Agencia == 'Monteria') {
+                $sql2 = DB::update("UPDATE delegados SET columna_81 = columna_81 + 1 WHERE NoTarjeton = ?", [$NoTarjeton]);
+            } else if ($Agencia == 'Sincelejo') {
+                $sql2 = DB::update("UPDATE delegados SET columna_82 = columna_82 + 1 WHERE NoTarjeton = ?", [$NoTarjeton]);
+            } else if ($Agencia == 'Yopal') {
+                $sql2 = DB::update("UPDATE delegados SET columna_83 = columna_83 + 1 WHERE NoTarjeton = ?", [$NoTarjeton]);
+            } else if ($Agencia == 'Riohacha') {
+                $sql2 = DB::update("UPDATE delegados SET columna_84 = columna_84 + 1 WHERE NoTarjeton = ?", [$NoTarjeton]);
+            } else if ($Agencia == 'Valledupar') {
+                $sql2 = DB::update("UPDATE delegados SET columna_85 = columna_85 + 1 WHERE NoTarjeton = ?", [$NoTarjeton]);
+            } else if ($Agencia == 'Cartagena') {
+                $sql2 = DB::update("UPDATE delegados SET columna_86 = columna_86 + 1 WHERE NoTarjeton = ?", [$NoTarjeton]);
+            } else if ($Agencia == 'Santa Marta') {
+                $sql2 = DB::update("UPDATE delegados SET columna_88 = columna_88 + 1 WHERE NoTarjeton = ?", [$NoTarjeton]);
+            } else if ($Agencia == 'Duitama') {
+                $sql2 = DB::update("UPDATE delegados SET columna_89 = columna_89 + 1 WHERE NoTarjeton = ?", [$NoTarjeton]);
+            } else if ($Agencia == 'Bogotá Centro') {
+                $sql2 = DB::update("UPDATE delegados SET columna_90 = columna_90 + 1 WHERE NoTarjeton = ?", [$NoTarjeton]);
+            } else if ($Agencia == 'Bogotá TC') {
+                $sql2 = DB::update("UPDATE delegados SET columna_91 = columna_91 + 1 WHERE NoTarjeton = ?", [$NoTarjeton]);
+            } else if ($Agencia == 'Bogotá Norte') {
+                $sql2 = DB::update("UPDATE delegados SET columna_92 = columna_92 + 1 WHERE NoTarjeton = ?", [$NoTarjeton]);
+            } else if ($Agencia == 'Villavicencio') {
+                $sql2 = DB::update("UPDATE delegados SET columna_93 = columna_93 + 1 WHERE NoTarjeton = ?", [$NoTarjeton]);
+            } else if ($Agencia == 'Tunja') {
+                $sql2 = DB::update("UPDATE delegados SET columna_94 = columna_94 + 1 WHERE NoTarjeton = ?", [$NoTarjeton]);
+            } else if ($Agencia == 'Ibagué') {
+                $sql2 = DB::update("UPDATE delegados SET columna_95 = columna_95 + 1 WHERE NoTarjeton = ?", [$NoTarjeton]);
+            } else if ($Agencia == 'Neiva') {
+                $sql2 = DB::update("UPDATE delegados SET columna_96 = columna_96 + 1 WHERE NoTarjeton = ?", [$NoTarjeton]);
+            } else if ($Agencia == 'Bucaramanga') {
+                $sql2 = DB::update("UPDATE delegados SET columna_97 = columna_97 + 1 WHERE NoTarjeton = ?", [$NoTarjeton]);
+            } else if ($Agencia == 'Cúcuta') {
+                $sql2 = DB::update("UPDATE delegados SET columna_98 = columna_98 + 1 WHERE NoTarjeton = ?", [$NoTarjeton]);
             }
-    
-            
-
         }
     
         if($sql2){
             $sql = DB::update("UPDATE entrada SET Voto = 1 WHERE ID = ?", [$id]);
-            // return redirect('/entrance')->with("correcto", "¡El voto se registró correctamente!");
-            dd($id);
+            return redirect('/entrance')->with("correcto", "¡El voto se registró correctamente!");
         } else {
-            $tarjeton = $request->asd;
-            dd('asd');
-            // return redirect('/entrance')->with("incorrecto", "¡Hubo un problema al registrar el voto!");
+            return redirect('/entrance')->with("incorrecto", "¡Hubo un problema al registrar el voto!");
 
         }
     }
-    
 
-        //                     $request->Votos,
-        //                 ]);
-
-
-
-
-    // public function updatevotos ($id, Request $request){
-
-
-
-    //     $usuarioActual = Auth::user();
-    //     $agenciaU = $usuarioActual->agenciau;
-        
-
-    //     $agenciaColumnaMapping = [
-    //         'Bogotá Elemento' => 13,
-    //         'CaliBC' => 30,
-    //         'Cali' => 31,
-    //         'Palmira' => 32,
-    //         'Buga' => 34,
-    //         'Buenaventura' => 33,
-    //         'Tuluá' => 35,
-    //         'Sevilla' => 36,
-    //         'La Unión' => 37,
-    //         'Roldanillo' => 38,
-    //         'Cartago' => 39,
-    //         'Zarzal' => 40,
-    //         'Caicedonia' => 41,
-    //         'S Quilichao' => 42,
-    //         'Yumbo' => 43,
-    //         'Jamundí' => 44,
-    //         'Pasto' => 45,
-    //         'Popayán' => 46,
-    //         'Ipiales' => 47,
-    //         'Leticia' => 48,
-    //         'Puerto Asis' => 49,
-    //         'Soacha' => 68,
-    //         'Manizales' => 70,
-    //         'Zipaquirá' => 73,
-    //         'Facatativá' => 75,
-    //         'Pereira' => 74,
-    //         'Girardot' => 76,
-    //         'San Andrés' => 77,
-    //         'Armenia' => 78,
-    //         'Medellín' => 80,
-    //         'Monteria' => 81,
-    //         'Sincelejo' => 82,
-    //         'Yopal' => 83,
-    //         'Riohacha' => 84,
-    //         'Valledupar' => 85,
-    //         'Cartagena' => 86,
-    //         'Santa Marta' => 88,
-    //         'Duitama' => 89,
-    //         'Bogotá Centro' => 90,
-    //         'Bogotá TC' => 91,
-    //         'Bogotá Norte' => 92,
-    //         'Villavicencio' => 93,
-    //         'Tunja' => 94,
-    //         'Ibagué' => 95,
-    //         'Neiva' => 96,
-    //         'Bucaramanga' => 97,
-    //         'Cúcuta' => 98,
-    //     ];
-
-
-
-        
-    //     $nombreResult = DB::select("SELECT Nombre FROM delegados WHERE ID = $id");
-    //     $apellidosResult = DB::select("SELECT Apellidos FROM delegados WHERE ID = $id");
-
-    //     $nombre = $nombreResult[0]->Nombre;
-    //     $apellidos = $apellidosResult[0]->Apellidos;
-
-    //     $nombrecompleto = $nombre . ' ' . $apellidos;
-    //     $columna = $agenciaColumnaMapping[$agenciaU];
-
-
-
-    //     $resultado = DB::select("SELECT columna_$columna FROM delegados WHERE ID = $id");
-
-    //     if (!empty($resultado)) {
-    //         $primerResultado = $resultado[0]; 
-        
-    //         $numero = intval($primerResultado->{"columna_$columna"});
-        
-    //         if ($numero > 0) {
-    //             return back()->with("incorrecto",  "YA HA REGISTRADO LOS VOTOS POR EL CANDIDATO!");
-    //         } else {
-    //             if (array_key_exists($agenciaU, $agenciaColumnaMapping)) {
-    //                 $columna = $agenciaColumnaMapping[$agenciaU];
-        
-    //                 $sql = DB::update("UPDATE delegados SET columna_$columna=? WHERE ID = $id", [
-    //                     $request->Votos,
-    //                 ]);
-    //             }
-    //         }
-    //     }
-            
-    //     if ($sql) {
-
-    //         return back()->with("correcto",  $request->Votos . " voto(s) añadido(s) correctamente a ".$nombrecompleto."!");
-    //     } else {
-    //         return back()->with("incorrecto", "¡Error al añadir votos al registro!");
-    //     }
-
-    // }
 
     public function imprimir(){
         $sql = DB::select("SELECT * FROM delegados ORDER BY CAST(NoTarjeton AS SIGNED) ASC");

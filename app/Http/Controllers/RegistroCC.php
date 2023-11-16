@@ -730,10 +730,24 @@ $sumaTotal = $sumaColumna13 + $sumaColumna30 + $sumaColumna31 + $sumaColumna32 +
     $fpdf->Ln();$fpdf->Ln();$fpdf->Ln();
 
 
+    $consecutivo = 0;
 
 
-    $fpdf->Output('I', 'impresion/Ticket-' . "asd" . '.pdf');
-    $fpdf->Output('F', 'impresion/Ticket-' . "asd" . '.pdf');
+    while (true) {
+        $consecutivo++;
+
+
+        $nombreArchivo = 'impresion/Reporte_5/REPORTE-5_#' . $consecutivo. '.pdf';
+ 
+        if (!file_exists($nombreArchivo)) {
+            break; 
+        }
+    }
+    
+
+    $fpdf->Output('I', 'impresion/Reporte_5/REPORTE-5' . $consecutivo . '.pdf');
+    $fpdf->Output('F', $nombreArchivo);
+
     exit;
         
         }
@@ -840,9 +854,24 @@ $sumaTotal = $sumaColumna13 + $sumaColumna30 + $sumaColumna31 + $sumaColumna32 +
 
     $fpdf->Ln();         $fpdf->Ln(); 
     
+    $consecutivo = 0;
 
-    $fpdf->Output('I', 'impresion/Ticket-' . "asd" . '.pdf');
-    $fpdf->Output('F', 'impresion/Ticket-' . "asd" . '.pdf');
+
+    while (true) {
+        $consecutivo++;
+
+
+        $nombreArchivo = 'impresion/Reporte_1/REPORTE-1_#' . $consecutivo. '.pdf';
+ 
+        if (!file_exists($nombreArchivo)) {
+            break; 
+        }
+    }
+    
+
+    $fpdf->Output('I', 'impresion/Reporte_1/REPORTE-1' . $consecutivo . '.pdf');
+    $fpdf->Output('F', $nombreArchivo);
+
     exit;
         
         }
@@ -3397,8 +3426,24 @@ $fpdf->Ln();
         $fpdf->SetFont('Helvetica', '', $headerFontSize);
         $fpdf->Cell($columnWidthName5, 30, utf8_decode($sumaTotal), 0, 0, 'C'); 
 
-    $fpdf->Output('I', 'impresion/Ticket-' . "asd" . '.pdf');
-    $fpdf->Output('F', 'impresion/Ticket-' . "asd" . '.pdf');
+        $consecutivo = 0;
+
+
+        while (true) {
+            $consecutivo++;
+    
+    
+            $nombreArchivo = 'impresion/Reporte_2/REPORTE-2_#' . $consecutivo. '.pdf';
+     
+            if (!file_exists($nombreArchivo)) {
+                break; 
+            }
+        }
+        
+    
+        $fpdf->Output('I', 'impresion/Reporte_2/REPORTE-2' . $consecutivo . '.pdf');
+        $fpdf->Output('F', $nombreArchivo);
+    
     exit;
         
         }
@@ -3586,8 +3631,24 @@ $fpdf->Ln();
     $fpdf->Ln();         $fpdf->Ln(); 
     
 
-    $fpdf->Output('I', 'impresion/Ticket-' . "asd" . '.pdf');
-    $fpdf->Output('F', 'impresion/Ticket-' . "asd" . '.pdf');
+    $consecutivo = 0;
+
+
+    while (true) {
+        $consecutivo++;
+
+
+        $nombreArchivo = 'impresion/Reporte_3/REPORTE-3_#' . $consecutivo. '.pdf';
+ 
+        if (!file_exists($nombreArchivo)) {
+            break; 
+        }
+    }
+    
+
+    $fpdf->Output('I', 'impresion/Reporte_3/REPORTE-3' . $consecutivo . '.pdf');
+    $fpdf->Output('F', $nombreArchivo);
+
     exit;
         
         
@@ -3791,8 +3852,24 @@ $fpdf->Ln();
     $fpdf->Ln();         $fpdf->Ln(); 
     
 
-    $fpdf->Output('I', 'impresion/Ticket-' . "asd" . '.pdf');
-    $fpdf->Output('F', 'impresion/Ticket-' . "asd" . '.pdf');
+    $consecutivo = 0;
+
+
+    while (true) {
+        $consecutivo++;
+
+
+        $nombreArchivo = 'impresion/Reporte_4/REPORTE-4_#' . $consecutivo. '.pdf';
+ 
+        if (!file_exists($nombreArchivo)) {
+            break; 
+        }
+    }
+    
+
+    $fpdf->Output('I', 'impresion/Reporte_4/REPORTE-4' . $consecutivo . '.pdf');
+    $fpdf->Output('F', $nombreArchivo);
+
     exit;
         
         

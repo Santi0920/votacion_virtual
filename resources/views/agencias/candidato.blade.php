@@ -176,16 +176,11 @@
                     
                 @endforeach   
             </div>
-            <input name="asd" value="{{$NoTarjeton}}">
         </div>
-
-        
-
-        
 
         <div class="text-center mb-5">
                 <a href="/entrance"><button type="submit" class="btn fw-semibold border border-dark btn-warning me-5" style="font-size:40px;"><i class="fa-solid fa-arrow-left me-2"></i></i>VOLVER</button></a>
-                <a onclick="return confirmar()" href="{{route('votoporcandidato.agency', $id)}}"><button type="submit" class="btn fw-semibold border border-dark" style="background-color:#005E56; color:white; font-size:40px;">VOTAR</button></a>
+                <a onclick="return confirmar()" href="{{ route('votoporcandidato.agency', ['id' => $id, 'NoTarjeton' => $NoTarjeton]) }}"><button type="submit" class="btn fw-semibold border border-dark" style="background-color:#005E56; color:white; font-size:40px;">VOTAR</button></a>
         </div>
 
         

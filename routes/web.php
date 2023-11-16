@@ -111,18 +111,17 @@ Route::get('/datatableagency', [AgencyEntrance::class, 'data'])
 ->middleware('auth.agency')
 ->name('datatable.agency');
 
-Route::get('/candidato-{id}', [AgencyEntrance::class, 'mostrarcandidato'])
-->middleware('auth.agency')
-->name('mostrarcandidato.agency');
-
-
+//BOTON QUE TRAE LA VISTA DEL CANDIDATO
 Route::post('/candidato-{id}', [AgencyEntrance::class, 'votarcandidato'])
 ->middleware('auth.agency')
 ->name('votarcandidatoid.agency');
 
-Route::get('/candidato-{id}', [AgencyEntrance::class, 'votar'])
+
+//BOTON VOTAR
+Route::get('/votar-{id}-{NoTarjeton}', [AgencyEntrance::class, 'votar'])
 ->middleware('auth.agency')
 ->name('votoporcandidato.agency');
+
 
 
 
